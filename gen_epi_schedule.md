@@ -1,10 +1,11 @@
 ---
-layout: workshop_main_3day
+layout: tutorial_page
 permalink: /genomic_epidemiology_2017_schedule
 title: Genomic Epidemiology
 header1: Workshop Pages for Students
 header2: Infectious Disease Genomic Epidemiology
 image: /site_images/CBW_wshop-epidem_map-icon.png
+home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
 ---
 
 | | **Day 1** | | **Day 2** | | **Day 3** |
