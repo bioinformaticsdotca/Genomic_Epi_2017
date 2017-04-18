@@ -1,18 +1,114 @@
-Working on this offline...trust me, the local version actually has content!
-
-layout: tutorial_page
-
+layout: tutorial_page 
 permalink: /high-throughput_biology_2017_module2_lab
 
-title: Infectious Disease Genomic Epidemiology Tutoral #4
+title: Infectious Disease Genomic Epidemiology Tutorial #4 
 
 header1: Workshop Pages for Students
 
-header2: Infectious Disease Genomic Epidemiology Phylogeography Lab
+header2: Infectious Disease Genomic Epidemiology Phylogeography Lab 
 
-image: /site_images/CBW-CSHL-graphic-square.png
-
-home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
+image: /site_images/CBW-CSHL-graphic-square.png home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
 
 # Phylogeography CBW tutorial
 ## Rob Beiko - May 1, 2017
+
+**Learning objectives.**
+By the end of the tutorial, students will be able to:
+
+- Build a simple tree visualization using Phylocanvas
+- Create a Microreact project and use it for outbreak investigation
+- Export a Microreact project and create visualizations in GenGIS
+
+### THE DATASET
+
+The dataset we will be using is adapted from [Eppinger et al. (2014)](http://mbio.asm.org/content/5/6/e01721-14.short "Eppinger et al. (2014)"), which used phylogenetic methods to identify the most probably source for the introduction of _Vibrio cholerae_ into Haiti. Since the Haiti sequences constituted a clade that was embedded within a larger Nepalese clade, the authors concluded that Nepalese peacekeepers were the most likely source of the epidemic strain: this corroborated with the geographic proximity of peacekeeping camps with affected areas. I compiled a tree, information about locations, and specific isolates into a set of files that we will use in the examples below.
+
+**Maps**: Microreact uses Leaflet.js to connect to OpenStreetMap maps, which is easy. GenGIS requires you to load in a map file, which is less easy. The good news is that by making use of the ***GDAL libraries, GenGIS supports a large number of geographic file formats (GeoTIFF, ASCIIGrid, PNG, ESRI shapefiles, etc.). Baby photos will work too. If you can find it, it's pretty much assured you can load it.
+
+However, there is nothing like digital maps to send you on circular Web page trips (well, maybe the SRA comes close). If you want Canadian data, you can try [NRCan](http://geogratis.gc.ca/site/eng/extraction "NRCan") although the data cannot be downloaded immediately. [Natural Earth](http://www.naturalearthdata.com/ "Natural Earth") has beautiful raster and vector data files that interact easily with GenGIS; unfortunately dynamic ranges are not available. The [USGS Earth Explorer](https://earthexplorer.usgs.gov/ "USGS Earth Explorer") has some very useful data, but (i) You'll need a login, and (ii) GenGIS may gak on some of the larger datasets. The map data we will use today are sourced from Natural Earth.
+
+**Location information and metadata**: We will use a couple of different representations of the data. Microreact wants a **single input file** that contains information about each isolate, including a unique ID and whatever other metadata you would like to include. One important point is that site colours and shapes must be hardcoded in the file: you can update on the fly if you're linked to a Google Sheet or whatnot, but there is no interactivity within Microreact itself for the time being. Here is the [**Microreact source file**](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/phylogeo/Microreact_isolates_filtered.csv "Microreact .csv file").
+
+Full disclosure: I changed the sampling year for one isolate from 1991 to 2004, to avoid a gap of 13 years in the timeline animation.
+
+We could use the same input format for GenGIS if we wanted to. But GenGIS offers a cleaner option which makes it easier to update information in a consistent way. For GenGIS we will split our data into a [**location file**](https://www.dropbox.com/s/z6slqwsujsxaha4/GenGIS_Cholera_locations.csv?dl=0 "Cholera isolate location file") which includes information for each site, and a [**sequence file**](https://www.dropbox.com/s/vh8l6gdszjjcj52/GenGIS_Cholera_isolates.csv?dl=0 "Cholera isolate "sequence" file") that contains information about each individual isolate. This structure keeps all location information in a single row, which makes it easier to update attributes for all sequences at a given location. IDs ("Site ID" and "Sequence ID") must be unique in each file, but you can otherwise go to town.
+
+**Tree**: Sourced directly from the paper. A rooted tree in Newick format.
+
+### PART 1 - [Phylocanvas](http://phylocanvas.org/ "Phylocanvas")
+
+_Overview_: Phylocanvas is a Javascript library that can be used to perform interactive tree manipulations on a web page. Phylocanvas scripts can be installed locally, or you can use online resources including the “quickstart” link and various plugins. As we will see later, Phylocanvas provides the tree visualizations in Microreact as well.
+
+_Tutorial outline_:
+
+1. Learn how to use the "Quickstart" package for basic visualizations
+2. Modify Quickstart to perform basic tree operations
+3. Link to a custom plugin that can ***
+
+### PART 2 - [Microreact](https://microreact.org/ "Microreact")
+
+_Overview_: ["Microreact is a React.js application taking full advantage of the Phylocanvas API (trees), the Leaflet.js (maps) and vis.js library (timeline)."](https://microreact.org/about) Key strengths of Microreact include the ease of data importation, interactive controls for all three main elements (map, tree, and timeline), and the ability to share projects via a simple Web link. In addition to plain text files, Microreact projects can be linked to NCBI, data sources in Google Sheets, and linked to other cloud-based storage systems.
+
+_Tutorial outline_:
+
+1. Interact with an existing Microreact project to learn basic interactions
+2. Create a Microreact project and identify key phylogenetic patterns
+3. Export data to .csv and .nwk files
+
+I recommend you create a **Microreact account**. Although it is not essential, this is the only way to manage a project (including deleting the project) after it has been created. The link to sign in is [https://microreact.org/signin](https://microreact.org/signin "https://microreact.org/signin (redundant tooltip!)")
+
+**2.1 Interact with an existing Microreact project**
+
+Let's start by looking at the data from the 2017 Ebola paper that was covered at the end of the lecture. In addition to a remarkable set of open data and analyses, including full implementations to recreate the figures ([Github link](https://github.com/ebov/space-time "Ebola "space-time" Github link")), the authors created a [Microreact project](https://microreact.org/project/west-african-ebola-epidemic?tt=rc "Ebola Microreact project") that users can interactively explore.
+
+The default view includes a map centred on the three most-affected countries, a phylogenetic tree with all the sampled strains, and a timeline that runs from Mar 2014 - Oct 2015 (Figure 2.1a). Everything has tooltips, so it's pretty easy to figure out what's going on here.
+
+Let's start with the map panel. The underlying data are OpenStreetMap rather than Google Maps, but the interactions are basically the same. You can change the map style using the button in the upper left-hand corner. You can also select a specific geographic range using the "Disable map region filter" button in the upper right-hand corner, then draw a polygon on the map that will define your selection of points. You could select a specific country, or target a border region to see if there are multiple implied transmission events.
+
+The tree panel offers a range of manipulation tools. In the upper corners are menus that let you do various Phylocanvas-y things to your tree: experiment with different styles, node sizes, etc. to try and find a suitable view. You can also choose labelings by clicking on the eyeball icon.
+
+Finally, the animational panel at the bottom lets you track cases as they emerge through time. The controls are pretty obvious, and you can enter different date ranges and choose "Filter" to filter the data according to date ranges.
+
+Give yourself a couple of minutes to play around and familiarize yourself with the system. Try to come up with a really nice, clear visualization of the data. Then try to come up with a horrible, obnoxious visualization of the data.
+
+**2.2 Create your own Microreact project**
+
+Whether you are logged in or not, the centre of the action is [https://microreact.org/upload](https://microreact.org/upload "Upload page!"). Here you have the opportunity to upload your isolate information (.csv) and your tree (.nwk). Select "browse for files" if you wish to upload directly, or you can link directly to URLs. Linking directly to the files in the Github repo makes Microreact sad, but I used [http://rawgit.com/](http://rawgit.com/ "rawgit.com") to serve the files, which works.
+
+So you two choices: either download the files from Github and upload them to Microreact, or use the following links to connect with the Dropbox versions:
+
+ - CSV: [`https://cdn.rawgit.com/bioinformaticsdotca/Genomic\_Epi_2017/f7b6d24a/phylogeo/Microreact_isolates_filtered.csv`](https://cdn.rawgit.com/bioinformaticsdotca/Genomic_Epi_2017/f7b6d24a/phylogeo/Microreact_isolates_filtered.csv "RawGit csv file")
+ - Tree: [`https://cdn.rawgit.com/bioinformaticsdotca/Genomic_Epi_2017/f7b6d24a/phylogeo/Haiti_cholera_tree.nwk`](https://cdn.rawgit.com/bioinformaticsdotca/Genomic_Epi_2017/f7b6d24a/phylogeo/Haiti_cholera_tree.nwk "RawGit tree file")
+
+You can do more exotic things too, like putting your data into a Google Sheet and using a shareable link, or using their API to do everything programmatically.
+
+Most of the columns in the .csv file are pretty explanatory. The critical ones are: 
+
+ - ID: this column must be present and unique.
+ - Latitude / longitude: positive values are Northern and Eastern hemispheres respectively, negative values are Southern and Western. So Halifax is about 44.65, -63.58.
+ - Region__colour: this assigns specific colours to the different values in the Region column. I've used HEX notation (hash-bunch of letters and numbers), but you can use HTML colour codes as well. Note the British / Canadian spelling of "colour" :)
+ - "Day/Month/Year": Microreact needs these three columns if you wish to create your own motion picture starring Dustin Hoffman and Rene Russo.
+
+Once the data are loaded, try out some similar operations as you did in 2.1 above. You can also change the source files (not on my Github!) to examine the effects. Be creative.
+
+If you have your own GenEpi data in a similar format, try it out! I would be interested to work through any strange matters that come up.
+
+**2.3 Export your data**
+
+In the upper right-hand corner of the page is a "Download project files" link. There's really nothing more to say about this, is there?
+
+### PART 3 - [GenGIS](http://kiwi.cs.dal.ca/GenGIS/Main_Page "GenGIS")
+
+_Overview_: GenGIS is a standalone application for Windows and Mac that supports extensive visualizations of phylogeographic data sets. Important features of GenGIS include a wide range of tree layout options, visualization of sample-site information, and Python plugins that allow users to create custom analyses and data views.
+
+_Tutorial outline_:
+
+1. Load map, location, and "sequence" data into GenGIS
+2. Manipulate location visualizations
+3. Load tree
+4. Experiment with different tree visualizations
+5. Run showSpread plugin
+6. Build a phylogenetic cartogram
+7. Manipulate trees for visual clarity
+
+**3.1. Load data**
