@@ -27,6 +27,8 @@ The dataset we will be using is adapted from [Eppinger et al. (2014)](http://mbi
 
 However, there is nothing like digital maps to send you on circular Web page trips (well, maybe the SRA comes close). If you want Canadian data, you can try [NRCan](http://geogratis.gc.ca/site/eng/extraction "NRCan") although the data cannot be downloaded immediately. [Natural Earth](http://www.naturalearthdata.com/ "Natural Earth") has beautiful raster and vector data files that interact easily with GenGIS; unfortunately dynamic ranges are not available. The [USGS Earth Explorer](https://earthexplorer.usgs.gov/ "USGS Earth Explorer") has some very useful data, but (i) You'll need a login, and (ii) GenGIS may gak on some of the larger datasets. The map data we will use today are sourced from Natural Earth.
 
+GenGIS has the MapMaker tool ([http://kiwi.cs.dal.ca/GenGIS/MapMaker](http://kiwi.cs.dal.ca/GenGIS/MapMaker "http://kiwi.cs.dal.ca/GenGIS/MapMaker")) which allows you to export a subsection of three really nice Natural Earth raster maps at a specified resolution. For more detailed manipulations, I usually fire up [QGIS](http://www.qgis.org/en/site/index.html "QGIS").
+
 **Location information and metadata**: We will use a couple of different representations of the data. Microreact wants a **single input file** that contains information about each isolate, including a unique ID and whatever other metadata you would like to include. One important point is that site colours and shapes must be hardcoded in the file: you can update on the fly if you're linked to a Google Sheet or whatnot, but there is no interactivity within Microreact itself for the time being. Here is the [**Microreact source file**](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/phylogeo/Microreact_isolates_filtered.csv "Microreact .csv file").
 
 Full disclosure: I changed the sampling year for one isolate from 1991 to 2004, to avoid a gap of 13 years in the timeline animation.
@@ -37,13 +39,135 @@ We could use the same input format for GenGIS if we wanted to. But GenGIS offers
 
 ### PART 1 - [Phylocanvas](http://phylocanvas.org/ "Phylocanvas")
 
-_Overview_: Phylocanvas is a Javascript library that can be used to perform interactive tree manipulations on a web page. Phylocanvas scripts can be installed locally, or you can use online resources including the “quickstart” link and various plugins. As we will see later, Phylocanvas provides the tree visualizations in Microreact as well.
+_Overview_: Phylocanvas is a Javascript library that can be used to perform interactive tree manipulations on a web page. Phylocanvas scripts can be installed locally, or you can use online resources including the “quickstart” link and various plugins. As we will see later, Phylocanvas provides the tree visualizations in Microreact as well. There are a couple of dependencies: see [http://phylocanvas.org/docs/install/](http://phylocanvas.org/docs/install/ "Installation guide") for details.
+
+We will do all of our work today by developing a locally hosted Web page to develop Phylocanvas functionality. All of our work will be based on the "Quickstart" script that is served from the Phylocanvas site. You can also install the Phylocanvas libraries locally if you wish to do serious development.
+
+N.B.: I thought about embedding the HTML / Javascript in this section into a Jupyter notebook using [ijavascript](https://www.npmjs.com/package/ijavascript "ijavascript"), but have never tried this and didn't really have the time to learn how to do it. You might have fun trying it out if this is your sort of thing.
 
 _Tutorial outline_:
 
 1. Learn how to use the "Quickstart" package for basic visualizations
 2. Modify Quickstart to perform basic tree operations
 3. Link to a custom plugin that can ***
+
+**1.1 Use the Phylocanvas Quickstart to create a simple tree visualization**
+
+The easiest place to start with Phylocanvas is to link directly to their "phylocanvas-quickstart.js" script, which implements all of the basic functionality needed to view and muck around with a tree. Let's deconstruct the code at http://phylocanvas.org/docs/quick-start/[http://phylocanvas.org/docs/quick-start/](http://phylocanvas.org/docs/quick-start/ "http://phylocanvas.org/docs/quick-start/"). Note that the phylogenetic tree in the website code has a couple of seemingly redundant labels: "E" is actually an internal node label, and "F" is the root. 
+
+First, the headers and style for the body and phylocanvas div. I have added an explicit utf-8 character set definition to stop irritating warnings in the browser console. We will not change this at all during the tutorial, so I won't refer to it again.
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+  <style>
+    body {
+      margin: 0.625em auto;
+      max-width: 60em;
+    }
+    #phylocanvas {
+      width: 100%;
+      height: 30em;
+    }
+  </style>
+ </head>
+ <body>
+  <h1>Phylocanvas Quickstart</h1>
+```
+
+Here is where we link to the Phylocanvas "quickstart" script:
+
+```
+  <div id="phylocanvas"></div>
+  <script type="application/javascript" src="https://cdn.rawgit.com/phylocanvas/phylocanvas-quickstart/v2.8.1/phylocanvas-quickstart.js"></script>
+
+```
+
+And here is where interesting things happen. This is code block we will be modifying as we proceed through the tutorial.
+
+```
+  <!-- START MODIFY BLOCK -->
+  <script type="application/javascript">
+    (function (Phylocanvas) {
+      var tree = Phylocanvas.createTree('phylocanvas');
+       tree.load('(A:0.1,B:0.2,(C:0.3,D:0.4)E:0.5)F;');
+    })(window.Phylocanvas);
+  </script>
+  <!-- END MODIFY BLOCK -->
+
+```
+
+And the closing tags.
+
+```
+
+</body>
+</html>
+```
+
+Running this in your browser should give you output similar to that in Figure 1.1a. You should be able to drag the tree around, and right clicking will give a menu with some more options.
+
+What's going on here? The key elements are:
+
+ - the instantiation of the #phylocanvas section of the document
+ - linking to the js file
+ - creating a tree in the 'phylocanvas' division
+ - initializing the tree with a Newick string
+
+**1.2 Modify Quickstart to perform basic tree operations**
+
+So that was exciting. Our next step is to start modifying the code with some basic tree manipulation bits.
+
+But first things first: although opinions seem divided about best practices, since we're going to be making slightly fancier Javascript code, we're going to pop out the gory stuff like function definitions into a separate .js file. There are several advantages to this:
+
+ - You can debug the HTML and js files independently.
+ - Your HTML file does not bloat with enormous blocks of code: all you need are "src" and function calls.
+ - Splitting out your JS code allows its reuse in other HTML files without having to constantly copy/paste/update.
+
+We basically need to do three things to accomplish this:
+
+1. Move the function definitions into a new file, which we will call "pc-functions.js"
+2. Tell the HTML file where to find these functions by using the "src" tag.
+3. Call functions from a separate `<script>` tag in the HTML file.
+
+_Step 1_
+
+Create a file called "pc-functions.js" (or just download the completed version from the Github repo) and paste the following code:
+
+```
+<!--
+function loadPredefinedTree() {
+	var defaultTree = '(A:0.1,B:0.2,(C:0.3,D:0.4)E:0.5)F;';
+	const tree = Phylocanvas.createTree('phylocanvas'); // see API for config options
+    tree.load(defaultTree);
+}
+-->
+```
+
+_Step 2 and 3_
+
+We're going to replace the modify block in the HTML file above with the following:
+
+```
+  <!-- START MODIFY BLOCK -->
+  <script type="application/javascript" src="pc-functions.js"></script>
+  <script>
+	loadPredefinedTree();
+  </script>
+  <!-- END MODIFY BLOCK -->
+```
+
+Two things just happened: first, we're loading "pc-functions.js" but doing anything with it because we used the src tag. Second, we're creating a script block where will do various things.
+
+The modified HTML file is on Github as "pc-basic-external.html". That was a bit of work, but hopefully it will pay off as we do more things with the library.
+
+
+
+**1.3 Link to a custom plugin**
+
+Thus endeth part 1.
 
 ### PART 2 - [Microreact](https://microreact.org/ "Microreact")
 
@@ -101,6 +225,10 @@ In the upper right-hand corner of the page is a "Download project files" link. T
 
 _Overview_: GenGIS is a standalone application for Windows and Mac that supports extensive visualizations of phylogeographic data sets. Important features of GenGIS include a wide range of tree layout options, visualization of sample-site information, and Python plugins that allow users to create custom analyses and data views.
 
+To get a feel for what GenGIS can do, the basic rule is **right click and see what happens**. This will open up the appropriate contextual menus, and you can explore what is possible here. As we walk through the examples below, feel free to experiment and see if you end up with something you like better.
+
+A note on saving: GenGIS allows you to save your session and re-load it at a later time, but it can be a bit flaky (it generated some of the weirdest errors we've ever seen!) and is not cross-compatible between versions. Sometimes when loading a session you might get a weird error message, but often clicking "Ignore" will load the session anyway. We tried. We really tried.
+
 _Tutorial outline_:
 
 1. Load map, location, and "sequence" data into GenGIS
@@ -109,6 +237,47 @@ _Tutorial outline_:
 4. Experiment with different tree visualizations
 5. Run showSpread plugin
 6. Build a phylogenetic cartogram
-7. Manipulate trees for visual clarity
 
-**3.1. Load data**
+**3.1. Load map, location, and "sequence" data**
+
+GenGIS can load maps in raster and vector data formats, and can overlay vector data onto raster maps. If you do plan to use both, you must load the raster data first, then overlay the vector files. If you load vector data first, GenGIS will create a "pseudo-raster" representation. Loading vector data first also prevents you from making a cartogram, so we're going to use a raster map.
+
+I took a vector map of political divisions and converted it to raster format using QGIS, with some downsampling to speed up the whole map loading process. This display is simple and clean, which can add emphasis to the trees. If you want a prettier base map, you can grab one of the maps directly from [Natural Earth](http://www.naturalearthdata.com/downloads/50m-raster-data/ "Natural Earth - 50 m resolution rasters"). Natural Earth also has many vector files that you can overlay onto the raster in GenGIS.
+
+One quick point about the GeoTIFF format: you need to include the '.tifw' file along with the actual .tif, as this contains the projection information. GenGIS will recognize this file automatically. But if you move the .tif without the .tifw, GenGIS will still load it, but you will not have the correct lat / long referencing.
+
+Alright, blah blah blah, let's load the map file already! You can load it either from the File menu, or by clicking the big "Load Raster Map" button in the ribbon. If you're using the rasterized vector map you'll get a slightly fuzzy outline due to the downsampling.
+
+I've already explained the location and sequence (i.e., isolates) files in the prologue, so let's just go ahead and load them. The appropriate buttons are also in the ribbon; you'll need to load the location data first, since the isolates need to know where they belong!!
+
+Map controls: It's easy to move the map around (left-click and drag), change the pitch (right-click and drag), and rotate (spin the compass in the control widget at the top right).
+
+**3.2. Manipulate location visualizations**
+
+You should see a bunch of orange dots which correspond to the locations. If you expand the items in the control panel on the left, you'll be able to see all the locations, and all the isolates mapped to each location. Note in particular that many of the Haiti location sites have >1 isolate associated with them. You can right-click on any location or isolate to inspect its data, and control its specific visualizations.
+
+Let's explore some global location controls. If you right-click on "Location Set", you'll get a window with tons of custom controls. The three tabs we'll briefly explore are "Location Set", "Grid", and "Polygons".
+
+Most of this stuff should be fairly self-explanatory: the "Location Set" tab gives you control over colour, shape, and size, which are all uniform by default but can be adjusted according to whatever properties you like. Go to "Colour", unselect "Uniform colour", and try colouring by Department. Choose any colour scheme you like, either continuous or categorical: use "Department" as your field. One thing I often do is start with one of the uniform colour schemes at the bottom, then set specific colours for emphasis. "Discrete: High contrast" is one of my favourite schemes although it cannot cover all categories so you'll need to define a couple of extra colours. "Continuous: Scientific" is also fun but the bright colours may not be your cup of tea. 
+
+Shapes work in pretty much the same way.
+
+If you want to adjust the size of your location dots, go to the "Size" tab and change the max/min values. It doesn't matter which field you use if everything is going to be the same size anyway.
+
+You can add labels to your locations, with lots of different controls for display and positioning. You can customize the label view in the main GenGIS window. One slight irritant is that you cannot see the label while you're dragging it to a different position: the alternative actually leads to horrendous performance hits.
+
+Grid: To activate the grid, you need to click "Show Grid" at the top of the panel. Once active, you can control several aspects of the grid, including density (# of divisions or lat/long intervals), alignment to map position, and colour (including transparency). Try creating a grid with 10-degree resolution, with a colour scheme that runs from white to red.
+
+Polygons: similar to gridding, you need to click on the "Draw Polygons" box at the top of the panel. Polygons will be based on location colouring. You can increase the padding, and make them float above the map.
+
+**3.3. Load tree**
+
+It's time to load the Newick-formatted tree. GenGIS requires that trees be rooted (i.e., a bifurcation at the basal node). Click on "Load Tree" in the ribbon. GenGIS defaults to a 3D slanted cladogram, but you can easily switch to other 3D views by right-clicking on "Tree" in the control panel and either choosing the appropriate option directly in the pop-up menu, or by clicking on "Properties" to open the detailed tree controls. We're not ready for 2D trees yet, but for now just appreciate that the 3D tree is a pretty awful representation in this case.
+
+**3.4. Tree visualizations**
+
+
+
+**3.5. showSpread**
+
+**3.6. Build a cartogram**
