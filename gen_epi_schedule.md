@@ -11,7 +11,7 @@ home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
 | | **Day 1** | | **Day 2** | | **Day 3** |
 | :---: | :---: | :---: | :---: | :---: | :---: |
 | 8:30 | Registration and Breakfast | 8:30 | Breakfast | 8:30 | Breakfast |
-| 9:00 | Welcome (Ann) | 9:00 | Module 4: Antimicrobial Resistance Genes (Rob) | 9:00 | Module 6: Emerging Pathogen Detection and Identification using Metagenomics Samples (Gary) |
+| 9:00 | Welcome (Ann) | 9:00 | Module 4: Antimicrobial Resistance Genes (Andrew) | 9:00 | Module 6: Emerging Pathogen Detection and Identification using Metagenomics Samples (Gary) |
 | 9:30 | Module 1: Introduction to Public Health Microbiology and Genomic Epidemiology (Will) | | | | |
 | 11:00 | Coffee Break | 10:00 | Coffee Break | 10:00 | Coffee Break |
 | 11:30 | Module 2: Pathogen Genomic Analysis I (Gary) | 10:30 | Module 4 - lab | 10:30 | Module 6 - lab|
