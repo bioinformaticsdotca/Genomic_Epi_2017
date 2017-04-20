@@ -8,10 +8,37 @@ image: /site_images/CBW_wshop-epidem_map-icon.png
 home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
 ---
 
+**Install these tools before the workshop:**
+
+1) A robust text editor.   
+
+* For Windows/PC - [notepad++](http://notepad-plus-plus.org/)  
+* For Linux - [gEdit](http://projects.gnome.org/gedit/)  
+* For Mac – [TextWrangler](http://www.barebones.com/products/textwrangler/download.html)
+
+2) A file decompression tool.  
+
+* For Windows/PC – [7zip](http://www.7-zip.org/).  
+* For Linux – [gzip](http://www.gzip.org).   
+* For Mac – already there.
+
+3) A robust internet browser such as Firefox or Safari (Internet Explorer and Chrome are not recommended because of Java issues).
+
+4) SSH client - Mac and Linux users already have a command line ssh program that can be run from the terminal. For Windows users, please download [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).  
+
+5) SCP/SFTP client - We will be moving data from the servers to the student laptops for visualization. Mac and Linux users already have a command line scp and sftp program. For Windows users, please install [WinSCP](http://winscp.net/eng/download.php).
+
+6) A PDF viewer (Adobe Acrobat or equivalent).
+
+7) GenGIS (http://kiwi.cs.dal.ca/GenGIS/Download).
+
+
 **Read these papers before the workshop:**
 
 General:  
 [A Primer on Infectious Disease Bacterial Genomics](http://cmr.asm.org/content/29/4/881)  
+[Bacterial population genetics, evolution and epidemiology](https://www.ncbi.nlm.nih.gov/pubmed/10365396)  
+[Impact of recombination on bacterial evolution](https://www.ncbi.nlm.nih.gov/pubmed/20452218)  
 
 Antimicrobial Resistance:  
 [CARD 2017](https://www.ncbi.nlm.nih.gov/pubmed/27789705)  
@@ -22,6 +49,9 @@ Antimicrobial Resistance:
 Phylogenomics:  
 [SNVPhyl](http://biorxiv.org/content/early/2016/12/09/092940)  
 
+Genome-based Multilocus Sequence Typing:  
+[MLST in the genomic era](https://www.ncbi.nlm.nih.gov/pubmed/24957089)  
+[Whole Genome MLST](https://www.ncbi.nlm.nih.gov/pubmed/24704917)  
 
 Phylogeography readings:  
 [Ebola phylogeo analysis](https://www.nature.com/nature/journal/vaop/ncurrent/full/nature22040.html)  
@@ -45,12 +75,7 @@ Phylogeography readings:
 
 3) [Sequencing Terminology](http://www.ncbi.nlm.nih.gov/projects/genome/glossary.shtml)
 
-4)  **Cytoscape Preparation tutorials**: Complete the [introductory tutorial to Cytoscape](http://opentutorials.cgl.ucsf.edu/index.php/Portal:Cytoscape3)
+4) Download and install GenGIS (http://kiwi.cs.dal.ca/GenGIS/Download), and ideally report any problems they have installing or running the software. If you’re feeling ambitious, you can try out the tutorials that are accessible via http://kiwi.cs.dal.ca/GenGIS/Documentation. 
 
-* Introduction to Cytoscape3 - User Interface
 
-* Introduction to Cytoscape3 - Welcome Screen
-
-* Filtering and Editing in Cytoscape 3
-
-5) Download and install GenGIS (http://kiwi.cs.dal.ca/GenGIS/Download), and ideally report any problems they have installing or running the software. If you’re feeling ambitious, you can try out the tutorials that are accessible via http://kiwi.cs.dal.ca/GenGIS/Documentation. 
+5) **PHYLOViZ Preparation tutorials**: PHYLOViZ can be used for the analysis and visualization of data from sequence-based typing methods, including MLST in its various forms (MLST, rMLST, cgMLST, wgMLST, etc.) and SNP profiles. It can be used to visualize strain relationships using several clustering methods with colour coding based on epidemiological or other forms of ancillary data (i.e. “metadata”). There is a [downloadable version](http://www.phyloviz.net/) as well as an [online version](https://online.phyloviz.net/index). Make sure you check out the [video tutorial](https://www.youtube.com/watch?v=hmbmurFV6ik&feature=youtu.be). If you have time, read the [walkthrough of features](https://online.phyloviz.net/index/tutorial/#introduction) to get familiar with the user interface. 
