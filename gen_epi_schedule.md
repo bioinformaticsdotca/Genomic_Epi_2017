@@ -20,5 +20,6 @@ home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
 | 2:30 | Module 3: Pathogen Genomic Analysis II (Ed) | | | | |
 | 3:30 | Coffee Break | 2:30 | Coffee Break | 2:30 | Coffee Break|
 | 4:00 | Module 3 - lab | 3:00 | Module 5 - lab | 3:00 | Module 7 - lab |
-| 5:00 | Dinner | 5:00 | Dinner | 5:00 | Concluding Discussion and Survey |
-| 6:00 | Integrated Assignment | 6:00 | Integrated Assignment | |
+| 5:00 | Dinner | 5:00 | Dinner | 5:00 | Concluding Discussion and Survey |  
+| 6:00 | Keynote: Open Bioinformatics Takes Centre Stage in Infectious Disease (Fiona) | | | | |  
+| 7:30 | Integrated Assignment | 6:00 | Integrated Assignment | |
