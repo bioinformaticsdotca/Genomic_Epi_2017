@@ -8,6 +8,7 @@ image: /site_images/CBW_wshop-epidem_map-icon.png
 home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
 ---
 
+
 ## Table of contents
 1. [Introduction](#intro)
 2. [Software](#software)    
@@ -21,7 +22,11 @@ home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
 <a name="intro"></a>
 ## Introduction
 
-Need a little introduction here....
+This tutorial aims to introduce a variety of softwares and concepts related to how to detect emerging pathogens from a complex host sample. Each exercise will demonstrate some of the concepts in current routine use and hopefully be applied to future applications.
+
+All datasets have been modified to either illustrate a specific learning objective or to reduce the complexity of the problem. Contamination and a lack of large and accurate databases render detection of microbial pathogens difficult. As a disclaimer, all results produced from the tools described in this tutorial and others must also be verified with supplementary bioinformatics or wet-laboratory techniques.
+
+
 
 <a name="software"></a>
 ## List of softwares for tutorial
@@ -59,7 +64,7 @@ mkdir $WORK_DIR/ex1 $WORK_DIR/ex2 $WORK_DIR/ex3
 
 ### Patient Background:
 
-On (e.g.) April 27, a 66-year old male was admitted to a local ER. He presented with stiff neck and muscle aches. CBC revealed elevated white blood cell count, neutrophils, etc. The hospital epidemiologist was consulted to confirm the clinicians’ findings. 
+On  April 27, a 66-year old male was admitted to a local ER. He presented with stiff neck and muscle aches. CBC revealed elevated white blood cell count, neutrophils, etc. The hospital epidemiologist was consulted to confirm the clinician's findings. 
 
 
 
@@ -74,7 +79,7 @@ On (e.g.) April 27, a 66-year old male was admitted to a local ER. He presented 
 
 
 
-### Step 1: Host reads filtering
+### Step 1: Host read filtering
 
 The first step in this demonstration is to remove the host reads from the dataset prior to downstream analyses. There are several different tools that can be used to filter out host reads such as Kraken, BLAST, KAT and others. In this demonstration, we have selected KAT because of the smaller memory requirement compared to Kraken and relatively quick speed.
 
@@ -169,7 +174,7 @@ Documentation is brief but in sufficent detail available [here](https://ccb.jhu.
 
 1) What is the 'C' value in the first column indicate?
 
-2) What is the value if a sequence is marked as unclassified?
+2) What is the value given if a sequence is marked as unclassified?
 
 
 
@@ -224,12 +229,12 @@ Writing final_web_report.html...
    [ WARNING ]  Too many query IDs to store in chart; storing supplemental files in 'final_web_report.html.files'.
 
 ````
-1) Why do you think that taxonomy ID 245018 and 1054400 are missing?
+1) Why do you think taxonomy ID 245018 and 1054400 are missing? (Hint: search for them on NCBI)
 
 
-2) What do you mean of the second warning message? Will it affect the results?
+2) What do you think the second warning message means? Will it affect the results?
 
-3) In the kraken-report file, final_report.txt, there was a small percentage of the reads that were  were unclassified. What do you think that is? Is it important?
+3) In the kraken-report file, final_report.txt, there was a small percentage of the reads that were  were unclassified. What do you think they are? Is it important?
 
 
 ---
@@ -242,19 +247,20 @@ Writing final_web_report.html...
 Patient
 
 
+On April 24, a 5-year old female was admitted to a local ER. She presented with high fever, chills and swelling lymph nodes. CBC revealed elevated white blood cell count, neutrophils, etc. The hospital epidemiologist was consulted to confirm the clinician's’ findings. 
 
 
 ### Demonstration:
 
 * Filter host reads with KAT
-* Run Kraken with separate specific bacterial and virus databases
+* Run Kraken with specific bacterial and virus databases
 * Generate text and graphic reports with Kraken and Kronatools
 
 
 ---
-### Step 1: Host reads filtering
+### Step 1: Host read filtering
 
-Same instruction as listed in Exercise 1, Step 1 but using dataset found in ex2 folder.
+The first step in this demonstration is to remove the host reads from the dataset prior to downstream analyses.
 
 
 ```bash
@@ -269,29 +275,31 @@ kat filter seq -i -o unmatched --seq ../EPD_IMS/reads/ex2/ex2_R1.fastq --seq2 ..
 
 
 
+In the previous example, we were introduced to minikraken. Recall, minikraken is a smaller database that includes a subset of complete bacterial, archaeal and viral genomes in RefSeq. In the following example, we will be using multiple, larger databases to increase our confidence that the database(s) we utilize will be able to detect the microbial pathogens sequences present in our sample.
 
-In this example we are going to use multiple larger databases instead of the single smaller minikraken. Since minikraken is only a subset of what is available of refSeq, we do not want to miss anything that may be present in our sample and not in our database. Our approach this time around will be parallel analysis pipeline as shown in image below.
+We will be using a parallel analysis pipeline in this approach as shown in the image below.
+
 
 
 
 ![alt text](images/parallel_analyses.png "Parallel analyses pipeline")
 
 
-For the sake of time and complexities, we will only run though viral and bacterial databases. Let’s start with the bacterial database.
-
+In the following exercise, we will run through both bacterial and viral databases, starting with the bacterial database.
 
 
 ```bash
 kraken --paired --threads 4 --db  ../EPD_IMS/kraken_db/bacterial unmatched.in.R1.fastq  unmatched.in.R2.fastq  > results_bacterial.txt
 
-kraken-report  --db ../EPD_IMS/kraken_db/bacterial results_bacterial.txt > results_bacterial_report.txt
+kraken-report  --db ../EPD_IMS/kraken_db/bacterial results_bacterial.txt > bacterial_report.txt
 
 ```
 
 
-Let’s open up the file ~/workspace/modules6/ex2/results_bacterial_report.txt in the web browser to see what happen.
+Let’s open up the file ~/workspace/modules6/ex2/bacterial_report.txt in the web browser to see what happen.
 
-Looks like most if not all the reads were marked as unclassified. One logical answer would be that our bug is not present in our database. Since we ran our reads against a bacterial only database, perhaps we should try the viral one next?
+Looks like all the reads were marked as unclassified. One logical answer would be that our microbial pathogen of interest  is not present in our database. Since we ran our reads against a bacterial only database, perhaps we should try the viral one next?
+
 
 
 ---
@@ -302,21 +310,21 @@ One note here that we are running on the reads generate from KAT and not output 
 ```bash
 kraken --paired --threads 4 --db  ../EPD_IMS/kraken_db/viral unmatched.in.R1.fastq  unmatched.in.R2.fastq  > results_viral.txt
 
-kraken-report  --db ../EPD_IMS/kraken_db/viral results_viral.txt > results_viral_report.txt
+kraken-report  --db ../EPD_IMS/kraken_db/viral results_viral.txt > viral_report.txt
 
 ```
 
-
-Let’s open up the file ~/workspace/modules6/ex2/results_viral_report.txt in the web browser to see what happen. Looks like that a large chunk of our reads matched the Orthopoxvirus Genus but nothing specific.
+Open the file ~/workspace/modules6/ex2/viral_report.txt in your web browser to view the result. Looks like a large amount of our reads matched to the Orthopoxvirus genus; though we could not detect a species.
 
 
 
 ### Questions
 
-1) How can you explain the large amount unclassified reads in results_viral_report.txt?
+1) What microbe has caused the infection?
 
-2) With the resutls_viral_report, can you indicate for sure which species is our suspect? Why or why not?
+2) What advantages and disadvantages can you foresee when using the parallel analyses pipeline approach?
 
+3) Using the viral_report, can you indicate with absolute certainty which species is our etiological culprit why or why not?
 
 
 
@@ -336,22 +344,24 @@ Patient
 
 
 * Filter host reads with KAT
-* Run Kraken with separate specific bacterial and virus databases
-* Pull unclassified reads from Kraken
-* Generate assembly with SPAdes
-* NCBI blast contigs
+* Run Kraken with bacterial and virus databases
+* Extract unclassified reads from Kraken
+* Generate assembly with using SPAdes
+* BLAST contigs against NCBI NT database
 
 
 ---
-### Step 1: Host reads filtering
+### Step 1: Host read filtering
 
 Same instruction as listed in Exercise 1, Step 1 but using dataset found in ex3 folder.
 
 
 ```bash
+
 cd ~/workspace/module6/ex3/
 
-kat filter seq -i -o unmatched --seq ../EPD_IMS/reads/ex3/ex3_R1.fastq --seq2 ../EPD_IMS/reads/ex3/ex3_R2.fastq ../EPD_IMS/kat_db/human_kmers.jf
+kat filter seq -i -o unmatched --seq ../EPD_IMS/reads/ex3/ex3_R1.fastq --seq2 ../EPD_IMS/reads/ex3/ex3_R2.fastq  ../EPD_IMS/kat_db/human_kmers.jf
+
 
 ```
 
@@ -359,7 +369,15 @@ kat filter seq -i -o unmatched --seq ../EPD_IMS/reads/ex3/ex3_R1.fastq --seq2 ..
 ### Step 2: Classify reads against bacterial database
 
 
+
+In the previous example, we used the parallel analysis approach to find the microbe in question.  In the following exercise, we will be using serial analysis pipeline .
+
+
+
 ![alt text](images/serial_analyses.png "Serial analyses pipeline")
+
+
+As we are performing a serial analysis, each step will utilize unclassified reads from the previous step rather than from the reads that did not match to the host reads. A disadvantage of Kraken when outputting unclassified reads is that the quality values are lost when the user provides both forward and reverse fastq files as input. Hence, to keep Kraken from losing these quality values, we will combine our forward and reverse reads together thus treating them as a single-end read. 
 
 
 ```bash
@@ -367,43 +385,55 @@ cat unmatched.in.R1.fastq unmatched.in.R2.fastq > unmatched.fastq
 
 kraken --threads 4 --db  ../EPD_IMS/kraken_db/bacterial unmatched.fastq  --unclassified-out unclassified_bact_reads.fastq > results_bacterial.txt
 
-kraken-report  --db ../EPD_IMS/kraken_db/bacterial results_bacterial.txt > results_bacterial_report.txt
+kraken-report  --db ../EPD_IMS/kraken_db/bacterial results_bacterial.txt > bacterial_report.txt
 
 ```
 
-Take a look and see that almost everything is unclassified reads… try the virus?
+```--unclassified-out``` print unclassified sequences to filename
+
+Taking a look at our bacterial_report.txt using the web browser, we can see that nothing matched the database. Next, we will attempt to classify the ‘unclassified’ reads from the previous Kraken analysis against the viral database.
 
 
 ---
-### Step 3: Classify reads against viral kraken database
+### Step 3: Classify reads against the viral kraken database
 
 Now attempt to run the virus database on same output from unclassified reads from kraken bacterial.
 
 ```bash
 kraken --threads 4 --db  ../EPD_IMS/kraken_db/viral  unclassified_bact_reads.fastq --unclassified-out unknown.fastq  > results_viral.txt
 
-kraken-report  --db ../EPD_IMS/kraken_db/viral results_viral.txt > results_viral_report.txt
+kraken-report  --db ../EPD_IMS/kraken_db/viral results_viral.txt > viral_report.txt
 
 ```
 
-Nothing again! Take the unclassified reads and run spades to see what we get.
+
+Open the viral_report.txt and scan the report to see if any reads were classified.
+
+The report reveals that everything is unclassified again. Since we have been propagating our reads through the different Kraken databases (e.g. bacterial and viral), our next option to detect the microbe in question is to take all of the unclassified reads and assemble them using SPAdes.
+
 
 ---
-### Step 4: Generate raw assembly with unclassified reads
+### Step 4: Generate an assembly with unclassified reads
 
-Use SPAdes.py to assembly the unknown reads together and see what you get
+We will be using default parameters for SPAdes.
+
+More in-depth documentation can be found [here](http://cab.spbu.ru/files/release3.10.1/manual.html).
+
+
 
 ```bash
+
 spades.py  -s unknown.fastq -o assembly_results
 
 
-
 ```
 
+Note: it may take a few minutes for SPAdes to run to completion.  
 
 
-When its done, lets try to blast the first few lines of the assembly_results/contigs.fasta file using NCBI blast 
+SPAdes has many different output files that are self contained in a single directory. For now, we are only interested in the assembly_results/contigs.fasta.
 
+For a quick search to see what has assembled, we will view the first 10 lines of the largest contig (which happens to be the top fasta entry in contigs.fasta) and do a BLAST on the NCBI server.
 
 ---
 ### Step 4: BLAST partial contig(s) against NT database
@@ -416,4 +446,17 @@ head -n 10 assembly_results/contigs.fasta > subset.fasta
 
 ```
 
-Navigate to [NCBI Blast](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch)
+
+Navigate to [NCBI Blast](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch) in your web browser and click on “Choose File”.  From there, select file ~/workspace/modules6/ex3/subset.fasta followed by the BLAST button.
+
+
+### Questions
+
+1) What species is being reported in BLAST? Is this our potential microbial pathogen of interest?
+
+
+2) What advantages and disadvantages can you foresee when using the serial analysis pipeline approach?
+
+3) With the viral_report, can you indicate with absolute certainty which species is our etiological culprit? Why or why not?
+
+4) Why do you think we used SPAdes instead of metaSPAdes? Try it out on the server. (hint : metaspades.py is the tool name)
