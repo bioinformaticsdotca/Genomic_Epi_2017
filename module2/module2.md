@@ -1,3 +1,13 @@
+---
+layout: tutorial_page
+permalink: /genomic_epidemiology_2017_EPD_IMS
+title: Genomic Epidemiology
+header1: Pathogen Genomic Analysis I
+header2: SNVPhyl
+image: /site_images/CBW_wshop-epidem_map-icon.png
+home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
+---
+
 # Haiti Cholera Dataset
 
 The data for this lab is a set of whole genome sequencing data from a number of *V. Cholerae* strains from the [outbreak of cholera in Haiti][haiti-cholera] beginning in 2010 as well as a number of other *V. cholerae* strains included for comparison.  This data was previously published in <http://mbio.asm.org/content/4/4/e00398-13.abstract> and <http://mbio.asm.org/content/2/4/e00157-11.abstract> and is available on NCBI's [Sequence Read Archive](http://www.ncbi.nlm.nih.gov/sra/).  You can view a table of the data at [metadata.tsv][].
