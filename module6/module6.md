@@ -442,12 +442,25 @@ Blast subset of contig against NCBI NT database online
 
 ```bash
 
-head -n 10 assembly_results/contigs.fasta > subset.fasta
+head -n 10 assembly_results/contigs.fasta
+
+>NODE_1_length_8957_cov_2.90725
+TAACTATGATGATCTTTTTGATGGAAACCATGAAGGTAATATTGAATCCATTTTTGAAGC
+GAATGGTGAAGGCTGGGGATCTACAATCGGAGCATGGGGAACATCAATGTTTTACGGAAC
+CGACTGGAAAAAGTTTAATACACCGGCTAATGCTTTAGTTAAAGCTTATGATGATGAAAA
+AGATACGGTGAGAAAAAAATCTACAGTATGGTTCTCTGATAAAACCGTTTCATGGTCCGA
+TACGTATTGGCCGTCATCTAATTTTCCGTTTGCCTATAAGATGAGAAAAACGGATGGTAC
+ACAGAATTTTTATATTTTCAGATTGTCTGATATTTTATTATTGAAGGCAGAAGCGCAGGC
+ACAAACGGGAGACCTCGCCGGTGCTGCGGTAAATGTTAATAAGATAAGAACAAGAGCAGC
+ACTATCACCTGTTGCTTTCGCGACGAAGGCAGACGCAATTGATAAAATCCTAAAAGAACG
+TTATCTGGAGCTTGCATTTGAGGGGCATCGTTGGTTTGATCTGAAAAGAACAGGGAAGTC
+
 
 ```
 
 
-Navigate to [NCBI Blast](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch) in your web browser and click on “Choose File”.  From there, select file ~/workspace/modules6/ex3/subset.fasta followed by the BLAST button.
+Navigate to [NCBI Blast](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch) in your web browser and copy & paste the partial fasta contig into "Enter Query Sequence" textbox. From there, click on the BLAST button.
+
 
 
 ### Questions
