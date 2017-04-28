@@ -1,6 +1,6 @@
 ---
 layout: tutorial_page
-permalink: /genomic_epidemiology_2017_EPD_IMS
+permalink: /genomic_epidemiology_2017_PGA_1
 title: Genomic Epidemiology
 header1: Pathogen Genomic Analysis I
 header2: SNVPhyl
