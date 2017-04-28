@@ -13,6 +13,8 @@ Welcome to Infectious Disease Genomic Epidemiology.
 
 The course schedule can be found [here](https://bioinformaticsdotca.github.io/genomic_epidemiology_2017_schedule).
 
+Pre-readings, pre-work, and laptop setup instructions can be found [here](https://bioinformaticsdotca.github.io/genomic_epidemiology_2017_prework).  
+
 If you have questions or comments, visit the workshop [Q&A forum](https://noteapp.com/GenEpi2017).
 
 ***
