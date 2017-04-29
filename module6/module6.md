@@ -244,9 +244,6 @@ Writing final_web_report.html...
 
 ### Background:
 
-Patient
-
-
 On April 24, a 5-year old female was admitted to a local ER. She presented with high fever, chills and swelling lymph nodes. CBC revealed elevated white blood cell count, neutrophils, etc. The hospital epidemiologist was consulted to confirm the clinician's’ findings. 
 
 
@@ -335,7 +332,7 @@ Open the file ~/workspace/modules6/ex2/viral_report.txt in your web browser to v
 
 ### Background:
 
-Patient
+On January 13th, a 78-year old male patient was rushed to the hospital from a long term care facility and died shortly upon arrival. Prior to the patient passing away, he was experiencing a high fever and shortness of breath. Patient has had multiple chronic illness for several years.
 
 
 
