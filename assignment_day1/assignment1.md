@@ -53,14 +53,14 @@ You don't need to run it, as the scheme is already done and it would take a whil
 
 `ln -s ~/CourseData/IDGE_data/TB_data/assemblies_subset2.list ~/workspace`
 
-2. ChewBBACA needs a file with all the genes in the wgMLST scheme. We can create one with:
+1. ChewBBACA needs a file with all the genes in the wgMLST scheme. We can create one with:
 
 `ls ~/workspace/wgMLST/*fasta > ~/workspace/wgMLST_genes.list`
 
-3. Now, go to the workspace folder and run ChewBBACA:
+1. Now, go to the workspace folder and run ChewBBACA:
 
 `cd ~/workspace`
 
 `/media/cbwdata/IDGE_data/bin/chewBBACA/allelecall/BBACA.py -i assemblies_subset2.list -g wgMLST_genes.list -o ~/workspace/wgMLST_call --cpu 6`
 
-I have to copy stuff to workspace it would be:
+
