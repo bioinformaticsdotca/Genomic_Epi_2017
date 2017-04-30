@@ -242,11 +242,9 @@ _Tutorial outline_:
 
 GenGIS can load maps in raster and vector data formats, and can overlay vector data onto raster maps. If you do plan to use both, you must load the raster data first, then overlay the vector files. If you load vector data first, GenGIS will create a "pseudo-raster" representation. Loading vector data first also prevents you from making a cartogram, so we're going to use a raster map.
 
-I took a vector map of political divisions and converted it to raster format using QGIS, with some downsampling to speed up the whole map loading process. This display is simple and clean, which can add emphasis to the trees. If you want a prettier base map, you can grab one of the maps directly from [Natural Earth](http://www.naturalearthdata.com/downloads/50m-raster-data/ "Natural Earth - 50 m resolution rasters"). Natural Earth also has many vector files that you can overlay onto the raster in GenGIS.
+One of the nicest basemaps at a global scale is the Natural Earth "hypsometric tints" map (NaturalEarth2_WorldMap.tif), which displays the world as it should look vis-a-vis forest cover, etc. This is a GeoTIFF but contains no elevation information - it simply provides a very nice georeferenced world map for subsequent analysis. The resolution is also high enough that our cartogram construction below will not look terrible. You can load the map either from the File menu, or by clicking the big "Load Raster Map" button in the ribbon. 
 
-One quick point about the GeoTIFF format: you need to include the '.tifw' file along with the actual .tif, as this contains the projection information. GenGIS will recognize this file automatically. But if you move the .tif without the .tifw, GenGIS will still load it, but you will not have the correct lat / long referencing.
-
-Alright, blah blah blah, let's load the map file already! You can load it either from the File menu, or by clicking the big "Load Raster Map" button in the ribbon. If you're using the rasterized vector map you'll get a slightly fuzzy outline due to the downsampling.
+We will also load a vector map which contains country boundaries. Click "Load Vector Map" and choose "ne_50m_admin_0_sovereignty.shp". You should see the country boundaries pop up, with the vectors assigned some random colour. Let's fix this immediately by right-clicking on the "Vector Map" line in the menu on the left, and choosing "Properties" which will by default bring up the polygon colouring. Set the colour to black or whatever you like.
 
 I've already explained the location and sequence (i.e., isolates) files in the prologue, so let's just go ahead and load them. The appropriate buttons are also in the ribbon; you'll need to load the location data first, since the isolates need to know where they belong!!
 
@@ -276,8 +274,47 @@ It's time to load the Newick-formatted tree. GenGIS requires that trees be roote
 
 **3.4. Tree visualizations**
 
+OK, now we're ready for 2D trees. 2D trees require you to draw a line in the map window that will be perpendicular to the branches of the tree. Tree drawing follows a "right-hand rule": if you draw a line from point A to B, the tree will layout on the right-hand side of the line (see Figure 3.4a). To draw the axis, click "Layout Line" on the ribbon, then click two points in the map pane that will serve as the end points of the line. The default 2D view is a cladogram, where branches are aligned such that all leaves touch the axis.
 
+The initial tree view highlights the fit between the ordering of leaves in the tree relative to the geographical ordering of the points along your chosen axis. The best possible alignment is obtained by rotating internal nodes of the tree to minimize the number of "crossings" needed to match up tree leaves with geographic locations. Data that follow a linear geographic pattern will require few crossings, while data that do not align well will generate many crossings. In this case, there really isn't a linear hypothesis or a clear east-to-west gradient, so the tree layout is useful more as a tool to simplify the visualization.
+
+The key to tree manipulation is to right click on "Tree: " in the left-hand menu and select "Properties". This will bring up a window with four tabs, the most important of which is "Symbology". This tab gives you control over the details of the tree visualization. If you select this tab, you will see three additional tab options, "Tree", "Connecting Lines", and "Geography Line". Let's take a look at the Tree panel.
+
+Most of the elements here allow you to control the size and the shape of the tree, and should be fairly self-explanatory. Try changing the line thickness, leaf node radius, etc. until you get a visualization you are happy with. A key option is the "Style" option: select this and then choose "Propagate Discrete Colours". Setting this option will assign colours to edges in the tree that subtend locations with the same colour. In other words, if an internal branch of the tree covers locations of a single colour, then the branch will have that colour. Branches in the tree that subtend two or more colours will assume the "Default Colour", which I usually set to black if the background is white. This is how we obtain the image shown in Figure 3.4a.
+
+If you deselect "Draw geographic axis", then you will get direct dropline connections from leaves to locations. In some cases this can make for a clearer view of connections between tree and geography. You can also adjust the dropline properties in the "Connecting Lines" panel. There is a tradeoff between dropline clarity and location properties, so try adjusting things to your liking.
+
+If we return to the main map area, we can see that GenGIS has a few more tree-visualization tricks up its sleeve. First, you can click+drag the control points of the geographic axis to rotate the tree, and you can click+drag on any node in the tree to move the entire tree. Simply clicking on a node will highlight the corresponding subtree and the locations it connects to. Right-clicking on a node brings additional options, including collapsing a subtree, splitting the tree, and zooming in on a particular subtree. Try it out - if things get weird you can always restore the original tree by using the option at the bottom.
+
+I generated the screenshot in Figure 3.4b with the following steps:
+
+  - Modify the tree visualizations to emphasize branches and shrink nodes
+ 
+  - Set all Haiti samples to purple and all Nepalese samples to green
+
+  - Right clicked on the root node and selected "Collapse homogeneous subtrees"
+
+  - Left click the node that is highlighted in red, to emphasize the connection between this small clade that comprises samples from both Haiti and Nepal.
+
+There are many other things you can do with tree visualizations - I encourage you to experiment and see what works best with your own dataset!
 
 **3.5. showSpread**
 
+So far we have concentrated on static visualizations of the data. However, GenGIS also offers the option to cycle through locations or isolates based on their attributes. A natural choice for this is to run an animation through time, with sequences added progressively as they appear. GenGIS has the "ShowSpread" plugin which supports this type of animation.
+
+To accomplish this, first set the tree with whatever visualization parameters you like. You may or may not want to view the connecting droplines: they can either be helpful or an unwanted distraction. 
+
+Next, under the "plugins" menu, choose the showSpread option. You will see the panel with default settings. Choose "Specific Date of Isolation" for "data" and choose a relatively recent starting date such as 1/1/2009. At the bottom you can set the granularity and speed of the animation. Click "Run" to play the animation.
+
 **3.6. Build a cartogram**
+
+Obviously a key challenge with this dataset is the fact that our most interesting samples are squished into two relatively small spaces. One way to address this is by distorting the map to emphasize areas with densely clustered sets of points, while compressing sparse regions. GenGIS uses a *cartogram* algorithm to accomplish this. To construct a cartogram, right click on the "Raster Map" item in the left panel, and select "Properties". You will see a series of tabs including "Cartogram". This will present you with a couple of options. The *location radius* extends the range of effect of dense areas, which tends to preserve local map structure. The *variable multiplier* increases the push of densely populated areas of the map, which increases dispersion at the expense of recognizable shapes on the map. The default values of 5 and 10 will give a modest level of distortion, while 100 and 100 will give you pretty much all Haiti and Nepal. If you still have that vector map hanging around, make sure you include it in the "Select Vector Map" option. Finally, since this map is quite large, it can take a while to perform the distortion. The "Resize Density Map" option is a heuristic that increases the grid size to accelerate the run, at the expense of perfect optimality. Try a couple of variations and see what the effects of the two variables are. Figure 3.6a shows a dramatic example where the variable multiplier is set to 200 - dramatic, but necessary when the areas of focus are relatively small. It's still a bit messy, but focusing on a small subtree helps to clarify the pattern.
+
+**Epilogue**
+
+This describes an alternative approach I used to build a very simple and clean basemap for GenGIS. The problem with this map came up when building the cartogram - the map resolution was great for a global view, but when Haiti is expanded it is far too blocky to be useful. For purposes other than cartogram construction, this type of approach will work fine.
+
+I took a vector map of political divisions and converted it to raster format using QGIS, with some downsampling to speed up the whole map loading process. This display is simple and clean, which can add emphasis to the trees. If you want a prettier base map, you can grab one of the maps directly from [Natural Earth](http://www.naturalearthdata.com/downloads/50m-raster-data/ "Natural Earth - 50 m resolution rasters"). Natural Earth also has many vector files that you can overlay onto the raster in GenGIS.
+
+One quick point about the GeoTIFF format: you need to include the '.tifw' file along with the actual .tif, as this contains the projection information. GenGIS will recognize this file automatically. But if you move the .tif without the .tifw, GenGIS will still load it, but you will not have the correct lat / long referencing.
+
