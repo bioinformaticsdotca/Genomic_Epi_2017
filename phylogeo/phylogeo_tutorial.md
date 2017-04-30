@@ -1,13 +1,12 @@
-layout: tutorial_page 
-permalink: /high-throughput_biology_2017_module2_lab
-
-title: Infectious Disease Genomic Epidemiology Tutorial #4 
-
+---
+layout: tutorial_page
+permalink: /GenEpi_2017_module5_lab
+title: GenEpi Lab 5
 header1: Workshop Pages for Students
-
-header2: Infectious Disease Genomic Epidemiology Phylogeography Lab 
-
-image: /site_images/CBW-CSHL-graphic-square.png home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
+header2: Infectious Disease Genomic Epidemiology 2017 Module Phylogeography Lab
+image: /site_images/CBW_wshop-epidem_map-icon.png
+home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
+---
 
 # Phylogeography CBW tutorial
 ## Rob Beiko - May 1, 2017
