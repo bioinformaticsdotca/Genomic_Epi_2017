@@ -9,7 +9,7 @@ home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
 ---
 
 
-#Workstation Setup
+# Workstation Setup
 ----
 Before running the SNVPhyl pipeline, we will have to make sure that the Docker daemon is running on your machine.  To start the Docker service, please enter the following command:
 
@@ -48,7 +48,7 @@ Please use the [SNVPhyl][] phylogenomics pipeline to construct a whole genome ph
 [SNVPhyl]: https://snvphyl.readthedocs.io
 
 
-#Salmonella Heidelberg Dataset
+# Salmonella Heidelberg Dataset
 ----
 The data for this exercise is a set of whole genome sequencing data from a number of *Salmonella heidelberg* strains.    
 
