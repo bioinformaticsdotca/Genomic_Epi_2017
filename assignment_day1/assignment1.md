@@ -73,16 +73,18 @@ You don't need to run it, as the scheme is already done and it would take a whil
 
 * NIPHEM – same as NIPH but with exact matches.
 
-* ALM – allele 20% larger than locus size mode (match CDS length> locus mode length + locus mode length * 0.2)
+* ALM – allele 20% larger than locus size (match CDS length> locus mode length + locus mode length * 0.2)
 
-* ASM – allele 20% smaller than locus size mode (match CDS length < locus mode length - locus mode length * 0.2)
+* ASM – allele 20% smaller than locus size (match CDS length < locus mode length - locus mode length * 0.2)
 
 
 5. Go to [PHYLOViZ Online](https://online.phyloviz.net/index) and click on the "Upload Data sets" link on the left. Select the "Profile Data" from the dropdown menu. Click "browse" button on the "Upload Profile Data" input to select the `results_alleles.tsv` file to upload. You also have to give a name to this dataset on the appropriate input field, and then click the "Lauch Tree" button.
 
 	* After the upload is finished, you should see a tree where each node corresponds to a sample. Use the "Graphic Properties" menu on the left to turn on the labels for Nodes and Links. The distances on the links correspond to the distance, in termsof number of different allele calls for each sample. You can also select the option "Relative Distance", normalizing the distance to a number between 0 and 1.
 
-	* How is this tree different from the phylogenetic tree obtained in the SNV analysis?
+	* This tree is a [Minimum Spanning Tree](https://en.wikipedia.org/wiki/Minimum_spanning_tree) of the graph that has all distances between the samples. How is this tree different from the phylogenetic tree obtained in the SNV analysis? What can you say about the distance between two nodes that do not have a link between them? 
+
+
 
 
  
