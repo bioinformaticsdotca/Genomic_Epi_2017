@@ -88,4 +88,4 @@ and visualize results in PHYLOViZ. The provenance file can be obtained with:
 
 	2. Does the clustering obtained here agree with the one from Snphyl? 
 
-	3. The distances between samples of the same cluster, which we assume are from the same strains, are larger than expected (compare with the V. cholerae dataset for instance). Can you think of a reason why this happens?  
+	3. The distances between samples of the same cluster, which we assume are from the same strains, are larger than expected (compared with the very small SNV distances). Can you think of a reason why this happens?  
