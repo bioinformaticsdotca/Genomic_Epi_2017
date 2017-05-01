@@ -59,6 +59,8 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 *<font color="#827e9c">Fiona Brinkman</font>*  
 
+[Keynote](https://bioinformatics.ca/cbwgenepikeynote)  
+
 **Integrated Assignment**  
 
 [Assignment](http://bioinformaticsdotca.github.io/GenEpi_2017_day1_assignment)  
