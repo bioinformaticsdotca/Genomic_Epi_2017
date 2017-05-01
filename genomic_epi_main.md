@@ -53,7 +53,7 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 [Lecture](https://bioinformatics.ca/genepimodule32017)
 
-[Lab Practical](http://bioinformaticsdotca.github.io/)  
+[Lab Practical](http://bioinformaticsdotca.github.io/GenEpi_2017_module3_lab)  
 
 ## Keynote: Open Bioinformatics Takes a Centre Stae in Infectious Disease  
 
