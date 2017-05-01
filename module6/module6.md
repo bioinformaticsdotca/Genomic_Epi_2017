@@ -85,8 +85,7 @@ The first step in this demonstration is to remove the host reads from the datase
 
 Command documentation is available [here](http://kat.readthedocs.io/en/latest/using.html#sequence-filtering)
 
-KAT works by breaking down each read into multiple 27 length k-mer and compare to a k-mer database of human reference genome. The complete read is either assigned into matched or unmatched file(s) if 10% of the k-mer of the read has been found in the human database. 
-
+KAT works by breaking down each read into multiple 27 length k-mers and comparing them to a k-mer database of human reference genomes. Subsequently, the complete read is either assigned into a matched or unmatched file(s) if 10% of the k-mer in the read has been found in the human database. 
 
 
 <img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/module6/images/kat.png?raw=true" alt="KAT" width="750" />  
@@ -339,8 +338,7 @@ Open the file ~/workspace/modules6/ex2/viral_report.txt in your web browser to v
 
 ### Background:
 
-On January 13th, a 78-year old male patient was rushed to the hospital from a long term care facility and died shortly upon arrival. Prior to the patient passing away, he was experiencing a high fever and shortness of breath. Patient has had multiple chronic illness for several years.
-
+On January 13th, a 78-year old male patient was rushed to the hospital from a long term care facility and died shortly upon arrival. Prior to the patient passing away, he was experiencing a high fever and shortness of breath. The patient’s medical history indicated he had multiple chronic illnesses for several years.
 
 
 
