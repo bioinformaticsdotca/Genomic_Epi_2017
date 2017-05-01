@@ -88,7 +88,7 @@ Command documentation is available [here](http://kat.readthedocs.io/en/latest/us
 KAT works by breaking down each read into multiple 27 length k-mer and compare to a k-mer database of human reference genome. The complete read is either assigned into matched or unmatched file(s) if 10% of the k-mer of the read has been found in the human database. 
 
 
-![alt text](images/kat.png "Kat Explaination")
+
 <img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/tree/master/module6/images/kat.png?raw=true" alt="KAT" width="750" />  
 
 
@@ -225,8 +225,7 @@ Return to your web browser and refresh the page from Step 3 to see the new files
 Click on final_web_report.html and you should see the image below.
 
 
-![alt text](images/krona_ex1.png "Krona image")
-
+<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/tree/master/module6/images/krona_ex1.png?raw=true" alt="Krona" width="750" />
 ---
 ### Questions
 
@@ -286,10 +285,7 @@ In the previous example, we were introduced to minikraken. Recall, minikraken is
 We will be using a parallel analysis pipeline in this approach as shown in the image below.
 
 
-
-
-![alt text](images/parallel_analyses.png "Parallel analyses pipeline")
-
+<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/tree/master/module6/images/parallel_analyses.png?raw=true" alt="Parallel analyses pipeline" width="750" />
 
 In the following exercise, we will run through both bacterial and viral databases, starting with the bacterial database.
 
@@ -381,7 +377,7 @@ In the previous example, we used the parallel analysis approach to find the micr
 
 
 
-![alt text](images/serial_analyses.png "Serial analyses pipeline")
+<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/tree/master/module6/images/serial_analyses.png?raw=true" alt="Serial analyses pipeline" width="750" />
 
 
 As we are performing a serial analysis, each step will utilize unclassified reads from the previous step rather than from the reads that did not match the host reads. A disadvantage of Kraken when outputting unclassified reads is that the quality values are lost when the user provides both forward and reverse fastq files as input. Hence, to keep Kraken from losing these quality values, we will combine our forward and reverse reads together thus treating them as a single-end reads.
