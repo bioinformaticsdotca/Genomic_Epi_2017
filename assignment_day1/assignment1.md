@@ -91,6 +91,5 @@ and visualize results in PHYLOViZ. The provenance file can be obtained with:
 	3. The distances between samples of the same cluster, which we assume are from the same strain, are larger than expected (compared with the very small SNV distances). Can you think of a reason why this happens? 
 	
 	4. You can also color the nodes by the allele types, by double-clicking on the "Multi-Locus Sequencing Typing (MLST)" tab and, similarly as with the Isolate Data, view the loci in Tree format and select one (or more) locus, and clicking the "View" button on the top right corner. 
-	
 	Choose some loci and check which ones agree with the expected clustering, and which don't (these are the ones causing the larger distances). Most of these conflicting loci actually do not represent different alleles, but most likely should be noise caused by the "quick and dirty" wgMLST scheme, based on only a few genomes and incomplete assemblies.
 	
