@@ -61,7 +61,7 @@ To begin, we will setup our environment in our ~/workspace so we can download al
 1. Based on "View by Gene" and "View by Functional Categories"  tabs, how many perfect hits were found for strain 165? Can you explain why there discrepancy between the tabs?
    
 2.  For strain 165 , why do you think genes: AAC(2')-Ic , mfpA and "Mycobacterium tuberculosis intrinsic murA conferring resistance to fosfomycin" were marked as strict instead of perfect status when all had perfect matches in the CARD database?
-3.  On metadata provided by the lab, we know that strains 165, 272 ,177 and 314 have some level of INH resistant where as the remaining strains 239 ,283 and 291 do not. What information can CARD provide to help support this metadata?
+3.  On metadata provided by the [lab](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/assignment_day1/tb_fake_provenance.tsv), we know that strains 165, 272 ,177 and 314 have some level of INH resistant where as the remaining strains 239 ,283 and 291 do not. What information can CARD provide to help support this metadata?
 
 
 ## Phylogeographic Analysis
