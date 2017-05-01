@@ -1,8 +1,35 @@
-Genome	INH_resistance	City		
-165.fa	Yes	Kelowna
-177.fa	Yes	Kelowna
-239.fa	No	PrinceGeorge
-272.fa	Yes	Kelowna
-283.fa	No	PrinceGeorge
-291.fa	No	PrinceGeorge
-314.fa	Yes	Kelowna
+Genome	INH_resistance	City	Year		
+005.fa 	No	Vancouver	2009
+018.fa	No	Vancouver	2011
+020.fa	No	Vancouver	2011
+035.fa	No	Vancouver	2011
+072.fa	No	Vancouver	2011
+074.fa	No	Vancouver	2012
+081.fa	No	Vancouver	2011
+089.fa	No	Vancouver	2009
+107.fa	No	Vancouver	2011
+116.fa	No	Vancouver	2006
+120.fa	No	Vancouver	2005
+142.fa	No	Vancouver	2011
+146.fa	No	Vancouver	2007
+158.fa	No	Vancouver	2006
+164.fa	No	Vancouver	2011
+165.fa	Yes	Kelowna	2010
+177.fa	Yes	Kelowna	2010
+182.fa	No	Vancouver	2008
+218.fa	No	Vancouver	2006
+221.fa	No	Vancouver	2008
+239.fa	No	PrinceGeorge	2006
+255.fa	No	Vancouver	2010
+272.fa	Yes	Kelowna	2009
+283.fa	No	PrinceGeorge	2006
+291.fa	No	PrinceGeorge	2007
+314.fa	Yes	Kelowna	2009
+317.fa	No	Vancouver	2007
+320.fa	No	Vancouver	2006
+327.fa	No	Vancouver	2011
+341.fa	No	Vancouver	2011
+342.fa	No	Vancouver	2010
+358.fa	No	Vancouver	2008
+379.fa	No	Vancouver	2010
+426.fa	No	PrinceGeorge	2006
