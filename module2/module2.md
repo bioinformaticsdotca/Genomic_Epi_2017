@@ -35,8 +35,8 @@ To run the pipeline, we will execute the main pipeline script at `/usr/local/snv
 The output from the pipeline can be found under ~/workspace/[OUTPUT_DIR_NAME].  
 
 1.  Examine the output file `filterStats.txt` to see a summary of the number of SNVs identified, and the number removed due to the SNV filtering steps in SNVPhyl. How many SNV sites were used to generate the phylogeny? How many were removed?
- 
-2.  The `mappingQuality.txt` file lists any strains that map to less than 80% of the reference genome and is a good reference to quickly identify any "trouble" isolates that may be effecting the quality of your run.  Can you think of why two strains, each mapping to 80% of the reference genome, could potentially eliminate up to 40% of the genome from the core?    
+
+2. Examine the table of identified SNVs (`snvTable.tsv`) and take a look at the positions and identified bases which have a status of **filtered-invalid**. Can you think of reasons why these positions were filtered by SNVPhyl?
 
 3.  SNVPhyl requires that at least 75% (`snv-abundance-ratio`) of the reads mapping as variants to a position on the isolate genome are in agreement before considering the position as a high quality single nucleotide variant.  Can you think of why this requirement makes the pipeline more robust?
 
@@ -55,9 +55,10 @@ Please use the [SNVPhyl][] phylogenomics pipeline to construct a whole genome ph
 
    *Note: You can print file contents with `cat`, but this leaves columns unaligned. To print with properly aligned columns you can use the command `column`, and you can use the command `cut` to slice out particular columns from a tabular text file. For example, `cut -f 1,2,7 [filename.tsv] | column -s  $'\t' -t`.*
 
-2. Examine the output file `filterStats.txt` to see a summary of the number of SNVs identified, and the number removed due to the SNV filtering steps in SNVPhyl. How many SNV sites were used to generate the phylogeny? How many were removed?
+2.  The `mappingQuality.txt` file lists any strains that map to less than 80% of the reference genome and is a good reference to quickly identify any "trouble" isolates that may be effecting the quality of your run.  Can you think of why two strains, each mapping to 80% of the reference genome, could potentially eliminate up to 40% of the genome from the core?    
 
-3. Examine the table of identified SNVs (`snvTable.tsv`) and take a look at the positions and identified bases which have a status of **filtered-invalid**. Can you think of reasons why these positions were filtered by SNVPhyl?
+3. Examine the output file `filterStats.txt` to see a summary of the number of SNVs identified, and the number removed due to the SNV filtering steps in SNVPhyl. How many SNV sites were used to generate the phylogeny? How many were removed?
+
 
 4. Using the phylogenetic tree depicited in [Figure 1 from "Population Genetics of Vibrio cholerae from Nepal in 2010: Evidence on the Origin of the Haitian Outbreak"][pop-vc-f1].
 
