@@ -225,7 +225,8 @@ Return to your web browser and refresh the page from Step 3 to see the new files
 Click on final_web_report.html and you should see the image below.
 
 
-<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/tree/master/module6/images/krona_ex1.png?raw=true" alt="Krona" width="750" />
+<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/module6/images/krona_ex1.png?raw=true" alt="Krona" width="750" />
+
 ---
 ### Questions
 
@@ -285,7 +286,7 @@ In the previous example, we were introduced to minikraken. Recall, minikraken is
 We will be using a parallel analysis pipeline in this approach as shown in the image below.
 
 
-<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/tree/master/module6/images/parallel_analyses.png?raw=true" alt="Parallel analyses pipeline" width="750" />
+<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/module6/images/parallel_analyses.png?raw=true" alt="Parallel analyses pipeline" width="750" />
 
 In the following exercise, we will run through both bacterial and viral databases, starting with the bacterial database.
 
@@ -377,7 +378,7 @@ In the previous example, we used the parallel analysis approach to find the micr
 
 
 
-<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/tree/master/module6/images/serial_analyses.png?raw=true" alt="Serial analyses pipeline" width="750" />
+<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/module6/images/serial_analyses.png?raw=true" alt="Serial analyses pipeline" width="750" />
 
 
 As we are performing a serial analysis, each step will utilize unclassified reads from the previous step rather than from the reads that did not match the host reads. A disadvantage of Kraken when outputting unclassified reads is that the quality values are lost when the user provides both forward and reverse fastq files as input. Hence, to keep Kraken from losing these quality values, we will combine our forward and reverse reads together thus treating them as a single-end reads.
