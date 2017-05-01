@@ -88,4 +88,7 @@ and visualize results in PHYLOViZ. The provenance file can be obtained with:
 
 	2. Does the clustering obtained here agree with the one from Snphyl? 
 
-	3. The distances between samples of the same cluster, which we assume are from the same strains, are larger than expected (compared with the very small SNV distances). Can you think of a reason why this happens?  
+	3. The distances between samples of the same cluster, which we assume are from the same strain, are larger than expected (compared with the very small SNV distances). Can you think of a reason why this happens? 
+	
+	4. You can also color the nodes by profile, to check which loci agree with the expected clustering, and which don't (these are the ones most likely causing the larger distances). Most of these conflicting loci should not represent actually different alleles, but should be noise caused by the "quick and dirty" wgMLST scheme, based on only a few genomes.
+	
