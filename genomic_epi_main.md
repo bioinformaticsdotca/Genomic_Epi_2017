@@ -45,7 +45,7 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 [Lecture](https://bioinformatics.ca/genepimodule22017)
 
-[Lab Practical]()
+[Lab Practical](http://bioinformaticsdotca.github.io/genomic_epidemiology_2017_PGA_1)
 
 ## Module 3: Pathogen Genomic Analysis II
 
@@ -53,13 +53,15 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 [Lecture](https://bioinformatics.ca/genepimodule32017)
 
-[Lab Practical]()  
+[Lab Practical](http://bioinformaticsdotca.github.io/)  
 
 ## Keynote: Open Bioinformatics Takes a Centre Stae in Infectious Disease  
 
 *<font color="#827e9c">Fiona Brinkman</font>*  
 
 **Integrated Assignment**  
+
+[Assignment](http://bioinformaticsdotca.github.io/GenEpi_2017_day1_assignment)  
 
 
 ***
@@ -72,7 +74,7 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 [Lecture](https://bioinformatics.ca/genepimodule42017)
 
-[Lab Practical]()
+[Lab Practical](http://bioinformaticsdotca.github.io/GenEpi_2017_module4_lab)
 
 ## Module 5: Phylogeographic Analysis
 
@@ -80,9 +82,11 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 [Lecture](https://bioinformatics.ca/genepimodule52017)
 
-[Lab Practical]()
+[Lab Practical](http://bioinformaticsdotca.github.io/GenEpi_2017_module5_lab)
 
 **Integrated Assignment**  
+
+[Assignment](http://bioinformaticsdotca.github.io/GenEpi_2017_day2_assignment)  
 
 ***
 
@@ -94,7 +98,7 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 [Lecture](https://bioinformatics.ca/genepimodule62017)
 
-[Lab Practical]()  
+[Lab Practical](http://bioinformaticsdotca.github.io/genomic_epidemiology_2017_EPD_IMS)  
 
 
 ## Module 7: Data Visualization    
@@ -103,4 +107,4 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 [Lecture](https://bioinformatics.ca/genepimodule72017)
 
-[Lab Practical]()  
+[Lab Practical](http://bioinformaticsdotca.github.io/)  
