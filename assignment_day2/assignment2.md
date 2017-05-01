@@ -49,6 +49,8 @@ To begin, we will setup our environment in our ~/workspace so we can download al
    - 239
    
    You will need to download the assemblies to your local machine first before uploading to site. Navigate to http://cbwXX.dyndns.info/, where XX is your student ID. You should be able to find assembly files following directory hierarchy ~/workspace/inter_2/assemblies .
+   
+   
    When RGI is finished running on all of our assemblies, browser your results to answer the following questions.
 
 
