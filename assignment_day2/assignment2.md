@@ -25,9 +25,11 @@ We will practice the AMR and PA analysis from lab 4 and 5 on this data.
 
 ## Antimicrobial Resistance Genes 
 
-1. 
+1. The tuberculosis data is located on the folder ~/CourseData/IDGE_data/TB_data. The fastq files are on the folder ~/CourseData/IDGE_data/TB_data/fastq/12x/ 
+
+Follow instructions listed in module 4 [lab](https://bioinformaticsdotca.github.io/GenEpi_2017_module4_lab) for TB directory listed above.
 
 
 ## Phylogeographic Analysis
 
-1.
+1. 
