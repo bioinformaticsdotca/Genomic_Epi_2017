@@ -82,11 +82,17 @@ python chewBBACA/allelecall/BBACA.py \
 We can analyze `chewBBACA`'s output using `R`.
 
 ```R
-
 library(ggplot2)
 
+# First let's look at a summary of different kinds of incomplete
+# calls (missing, truncated, etc) that chewBACCA assigned
 
-# load the tab-delimited table of allele calls
+stats <- read.table('~/CourseData/IDGE_data/cgmlst/haiti/results_20170427T114159/results_statistics.tsv',
+			sep = '\t', header = TRUE, stringsAsFactors = FALSE, row.names = 1)
+
+View(stats)
+
+# now load the tab-delimited table of allele calls
 calls <- read.table('~/CourseData/IDGE_data/cgmlst/haiti/results_20170427T114159/results_alleles.tsv',
 			sep = '\t', header = TRUE, row.names = 1,
 			stringsAsFactors = FALSE)
