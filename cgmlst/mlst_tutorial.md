@@ -281,21 +281,22 @@ typing data into Phyloviz. Select the MLST analysis type from the dropdown menu,
 and we'll give the analysis an informative name. 
 
 `File --> Load Dataset`
-![Load Dataset](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_load_data.png?raw=true)
-![Name analysis](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_name_dataset.png?raw=true)
+<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_load_data.png?raw=true" alt="Load Dataset" width="750" />
+
+<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_name_dataset.png?raw=true" alt="Name analysis" width="750" />
 
 Next, load your typing data. In this case, our typing data is the table of core
 genome sequence types we created in R and saved to
 `haiti_cgmlst_typing_data.tsv`.
 
-![Typing](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_load_typing_data.png?raw=true)
+<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_load_typing_data.png?raw=true" alt="Typing Data" width="750" />
 
 In order to get meaningful results from our cgMLST scheme, we'll need to relate
 our cgSTs to the isolates they represent. To accomplish this, we'll load the
 table of isolate data we created from our cgST definions and provenance data.
 We'll be organizing the data on cgST, so select that as the key value.
 
-![Isolate data](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_load_isolate_data.png?raw=true)
+<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_load_isolate_data.png?raw=true" alt="Isolate Data" width="750" />
 
 Now that all the data are loaded, we'll calculate the globally optimal eBURST
 (goeBURST) clusters of the the dataset. Right-Click (Linux/Windows) or
@@ -304,14 +305,15 @@ Full MST.
 
 `Multilocus Sequence Typing (MLST) --> Compute --> goeBURST Full MST`
 
-![Calculate goeBURST](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_run_goeburst.png?raw=true)
+<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_run_goeburst.png?raw=true" alt="Calculate goeBURST" width="750" />
 
 Once the MST calculation is complete (it should be very fast for a dataset of
 this size), expand "Multilocus Sequence Typing" and double-click where it says
 "goeBURST Full MST (goeBURST distance"
 
-![Draw Tree](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/phyloviz_draw_tree.png?raw=true)
-![MST](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_mst.png?raw=true)
+<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/phyloviz_draw_tree.png?raw=true" alt="Draw tree" width="750" />
+
+<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_mst.png?raw=true" alt="MST" width="750" />
 
 An interactive force-directed minimum spanning tree should be drawn and
 animating. Feel free to play around with it.
@@ -326,9 +328,11 @@ a variable to project. Selecting the Tree option for viewing isolate data is
 often an easier method for selecting these variables. Once selected, click
 "View" in the upper right corner.
 
-![Isolate data](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_view_isolate_data.png?raw=true)
-![Selecting](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_select_provenance.png?raw=true)
-![Viewing](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_view_provenance.png?raw=true)
+<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_view_isolate_data.png?raw=true" alt="View Provenance" width="750" />
+
+<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_select_provenance.png?raw=true" alt="Selecting Provenance" width="750" />
+
+<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_view_provenance.png?raw=true" alt="Annotate the Tree" width="750" />
 
 Finally we can use Phyloviz to cluster our strains into groups at each
 informative threshold. Toward the bottom-left of the screen, click
@@ -336,9 +340,9 @@ informative threshold. Toward the bottom-left of the screen, click
 thresholds. These clusters will be saved back into your isolate data table. Your
 now-modified isolate data table can also be saved back into a file.
 
-![Saving Groups](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_save_groups.png?raw=true)
-![Save Isolate Data](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_save_isolate_data.png?raw=true)
+<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_save_groups.png?raw=true" alt="Saving Groups" width="750" />
 
+<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_save_isolate_data.png?raw=true" alt="Save Isolate Data" width="750" />
 
 # Adjusted Wallace Coefficient
 
@@ -353,7 +357,7 @@ this can be interpreted as,
 grouped together by Method B have only a 59.9% probability of being clustered
 together by Method A."*
 
-![AWC Example](http://www.comparingpartitions.info/tutorial_pngs/tutorial8_1.png)
+<img src="http://www.comparingpartitions.info/tutorial_pngs/tutorial8_1.png" alt="AWC Example" width="750" />
 
 We can assess clustering methods relative to one another using the AWC.
 [Comparing Partitions](http://www.comparingpartitions.info/index.php?link=Tool)
