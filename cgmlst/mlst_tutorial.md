@@ -313,7 +313,7 @@ this size), expand "Multilocus Sequence Typing" and double-click where it says
 ![Draw Tree](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/phyloviz_draw_tree.png?raw=true)
 ![MST](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_mst.png?raw=true)
 
-A an interactive force-directed minimum spanning tree should be drawn and
+An interactive force-directed minimum spanning tree should be drawn and
 animating. Feel free to play around with it.
 Each node is labelled with the cgST name that it represents, and the size of
 each node is logarithmically scaled to the number of strains contained within
@@ -398,7 +398,7 @@ See if you can put together the steps with what you've already learned. The task
 
 - Randomly select 200 genes from our cgMLST scheme
 - Define cgSTs for our cgMLST200
-    - Export our new cgSTs to `~/workspace
+    - Export our new cgSTs to `~/workspace`
 
 Here's the last snippet of R code you'll need for the task. 
 
