@@ -17,6 +17,33 @@ Before running the SNVPhyl pipeline, we will have to make sure that the Docker d
 
 
 
+# Salmonella Heidelberg Dataset
+----
+The data for this exercise is a set of whole genome sequencing data from a number of *Salmonella heidelberg* strains.    
+
+We will be using the [SNVPhyl][] phylogenomics pipeline to construct a whole genome phylogeny from the raw read data and a reference genome.  The files required for this exercise are:
+
+Reference: `~/CourseData/IDGE_data/Sheidelberg-snvphyl/S_HeidelbergSL476.fasta` 
+Reads Directory: `~/CourseData/IDGE_data/Sheidelberg-snvphyl/fastq`
+
+To speed up the execution time, these read files have been reduced to an average coverage of 10X.  As a result, please set the `--min-coverage` parameter to `4` for the SNVPhyl run. 
+
+To run the pipeline, we will execute the main pipeline script at `/usr/local/snvphyl-galaxy-cli/bin/snvphyl.py` using the `--deploy-docker` flag to launch the dockerized version of the pipeline.  The command should take the following format:
+
+`python /usr/local/snvphyl-galaxy-cli/bin/snvphyl.py --deploy-docker --fastq-dir [FASTQ_DIR] --reference-file [REFERENCE_FILE_LOCATION] --min-coverage 4 --output-dir /mnt/workspace/[OUTPUT_DIR_NAME]`
+
+The output from the pipeline can be found under ~/workspace/[OUTPUT_DIR_NAME].  
+
+1.  Examine the output file `filterStats.txt` to see a summary of the number of SNVs identified, and the number removed due to the SNV filtering steps in SNVPhyl. How many SNV sites were used to generate the phylogeny? How many were removed?
+ 
+2.  The `mappingQuality.txt` file lists any strains that map to less than 80% of the reference genome and is a good reference to quickly identify any "trouble" isolates that may be effecting the quality of your run.  Can you think of why two strains, each mapping to 80% of the reference genome, could potentially eliminate up to 40% of the genome from the core?    
+
+3.  SNVPhyl requires that at least 75% (`snv-abundance-ratio`) of the reads mapping as variants to a position on the isolate genome are in agreement before considering the position as a high quality single nucleotide variant.  Can you think of why this requirement makes the pipeline more robust?
+
+[SNVPhyl]: https://snvphyl.readthedocs.io
+
+
+
 
 # Haiti Cholera Dataset
 
@@ -45,31 +72,5 @@ Please use the [SNVPhyl][] phylogenomics pipeline to construct a whole genome ph
 [pop-vc-f1]: http://mbio.asm.org/content/2/4/e00157-11/F1.expansion.html
 [haiti-cholera]: http://en.wikipedia.org/wiki/2010%E2%80%9313_Haiti_cholera_outbreak
 [metadata.tsv]: metadata.tsv
-[SNVPhyl]: https://snvphyl.readthedocs.io
-
-
-# Salmonella Heidelberg Dataset
-----
-The data for this exercise is a set of whole genome sequencing data from a number of *Salmonella heidelberg* strains.    
-
-We will be using the [SNVPhyl][] phylogenomics pipeline to construct a whole genome phylogeny from the raw read data and a reference genome.  The files required for this exercise are:
-
-Reference: `~/CourseData/IDGE_data/Sheidelberg-snvphyl/S_HeidelbergSL476.fasta` 
-Reads Directory: `~/CourseData/IDGE_data/Sheidelberg-snvphyl/fastq`
-
-To speed up the execution time, these read files have been reduced to an average coverage of 10X.  As a result, please set the `--min-coverage` parameter to `4` for the SNVPhyl run. 
-
-To run the pipeline, we will execute the main pipeline script at `/usr/local/snvphyl-galaxy-cli/bin/snvphyl.py` using the `--deploy-docker` flag to launch the dockerized version of the pipeline.  The command should take the following format:
-
-`python /usr/local/snvphyl-galaxy-cli/bin/snvphyl.py --deploy-docker --fastq-dir [FASTQ_DIR] --reference-file [REFERENCE_FILE_LOCATION] --min-coverage 4 --output-dir /mnt/workspace/[OUTPUT_DIR_NAME]`
-
-The output from the pipeline can be found under ~/workspace/[OUTPUT_DIR_NAME].  
-
-1.  Examine the output file `filterStats.txt` to see a summary of the number of SNVs identified, and the number removed due to the SNV filtering steps in SNVPhyl. How many SNV sites were used to generate the phylogeny? How many were removed?
- 
-2.  The `mappingQuality.txt` file lists any strains that map to less than 80% of the reference genome and is a good reference to quickly identify any "trouble" isolates that may be effecting the quality of your run.  Can you think of why two strains, each mapping to 80% of the reference genome, could potentially eliminate up to 40% of the genome from the core?    
-
-3.  SNVPhyl requires that at least 75% (`snv-abundance-ratio`) of the reads mapping as variants to a position on the isolate genome are in agreement before considering the position as a high quality single nucleotide variant.  Can you think of why this requirement makes the pipeline more robust?
-
 [SNVPhyl]: https://snvphyl.readthedocs.io
 
