@@ -55,7 +55,7 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 [Lab Practical](http://bioinformaticsdotca.github.io/GenEpi_2017_module3_lab)  
 
-## Keynote: Open Bioinformatics Takes a Centre Stae in Infectious Disease  
+## Keynote: Open Bioinformatics Takes a Centre Stage in Infectious Disease  
 
 *<font color="#827e9c">Fiona Brinkman</font>*  
 
