@@ -80,7 +80,24 @@ python chewBBACA/allelecall/BBACA.py \
 # Filter Results
 
 We can analyze `chewBBACA`'s output using `R`.
+`chewBBACA` will assign an allele number if can find the locus,
+otherwise it will return one of the following codes instead:
 
+- EXC
+    - alleles that have 100% identity
+- INF
+    - inferred allele with prodigal
+- LNF
+    - number of loci not found
+- PLOT
+    - loci on edges of contigs
+- NIPL
+    - non-informatics paralogous loci
+- ALM
+    - alleles 20% larger than reference locus size
+- ASM
+    - alleles 20% smaller than reference locus size
+    
 ```R
 library(ggplot2)
 
