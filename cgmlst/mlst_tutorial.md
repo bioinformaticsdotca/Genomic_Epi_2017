@@ -281,21 +281,21 @@ typing data into Phyloviz. Select the MLST analysis type from the dropdown menu,
 and we'll give the analysis an informative name. 
 
 `File --> Load Dataset`
-![Load Dataset](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/cgmlst/img/phyloviz_load_data.png)
-![Name analysis](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/cgmlst/img/phyloviz_name_dataset.png)
+![Load Dataset](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_load_data.png)
+![Name analysis](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_name_dataset.png)
 
 Next, load your typing data. In this case, our typing data is the table of core
 genome sequence types we created in R and saved to
 `haiti_cgmlst_typing_data.tsv`.
 
-![Typing](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/cgmlst/img/phyloviz_load_typing_data.png)
+![Typing](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_load_typing_data.png)
 
 In order to get meaningful results from our cgMLST scheme, we'll need to relate
 our cgSTs to the isolates they represent. To accomplish this, we'll load the
 table of isolate data we created from our cgST definions and provenance data.
 We'll be organizing the data on cgST, so select that as the key value.
 
-![Isolate data](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/cgmlst/img/phyloviz_load_isolate_data.png)
+![Isolate data](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_load_isolate_data.png)
 
 Now that all the data are loaded, we'll calculate the globally optimal eBURST
 (goeBURST) clusters of the the dataset. Right-Click (Linux/Windows) or
@@ -304,14 +304,14 @@ Full MST.
 
 `Multilocus Sequence Typing (MLST) --> Compute --> goeBURST Full MST`
 
-![Calculate goeBURST](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/cgmlst/img/phyloviz_run_goeburst.png)
+![Calculate goeBURST](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_run_goeburst.png)
 
 Once the MST calculation is complete (it should be very fast for a dataset of
 this size), expand "Multilocus Sequence Typing" and double-click where it says
 "goeBURST Full MST (goeBURST distance"
 
-![Draw Tree](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/cgmlst/phyloviz_draw_tree.png)
-![MST](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/cgmlst/img/phyloviz_mst.png)
+![Draw Tree](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/phyloviz_draw_tree.png)
+![MST](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_mst.png)
 
 A an interactive force-directed minimum spanning tree should be drawn and
 animating. Feel free to play around with it.
@@ -326,9 +326,9 @@ a variable to project. Selecting the Tree option for viewing isolate data is
 often an easier method for selecting these variables. Once selected, click
 "View" in the upper right corner.
 
-![Isolate data](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/cgmlst/img/phyloviz_view_isolate_data.png)
-![Selecting](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/cgmlst/img/phyloviz_select_provenance.png)
-![Viewing](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/cgmlst/img/phyloviz_view_provenance.png)
+![Isolate data](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_view_isolate_data.png)
+![Selecting](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_select_provenance.png)
+![Viewing](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_view_provenance.png)
 
 Finally we can use Phyloviz to cluster our strains into groups at each
 informative threshold. Toward the bottom-left of the screen, click
@@ -336,8 +336,8 @@ informative threshold. Toward the bottom-left of the screen, click
 thresholds. These clusters will be saved back into your isolate data table. Your
 now-modified isolate data table can also be saved back into a file.
 
-![Saving Groups](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/cgmlst/img/phyloviz_save_groups.png)
-![Save Isolate Data](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/cgmlst/img/phyloviz_save_isolate_data.png)
+![Saving Groups](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_save_groups.png)
+![Save Isolate Data](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/cgmlst/img/phyloviz_save_isolate_data.png)
 
 
 # Adjusted Wallace Coefficient
