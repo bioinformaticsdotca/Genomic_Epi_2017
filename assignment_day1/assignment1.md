@@ -52,15 +52,14 @@ You don't need to run it, as the scheme is already done and it would take a whil
 
 `cd ~/workspace`
 
-`/media/cbwdata/IDGE_data/bin/chewBBACA/allelecall/BBACA.py -i assemblies_subset2.list -g wgMLST_genes.list -o ~/workspace/wgMLST_call --cpu 6`
+`/media/cbwdata/IDGE_data/bin/chewBBACA/allelecall/BBACA.py -i assemblies_subset2.list -g wgMLST_genes.list -o ~/workspace/wgMLST_call --cpu 8`
 
 
 4. On the output folder, there will be a folder called `results_<DATE>`, with the MLST calling result files. The called alleles are in the file `results_alleles.tsv`. Each column has a different locus, and on each row there are the allele calls for each sample. You can look at some calls with the `cut` command, together with `column` to align the columns correctly:
 
   `cut -f 1,2-5  results_alleles.tsv | column -s  $'\t' -t`
 
-  Try different columns other that 2-5 to look at other allele calls, and see if you can visually have a quick idea on how the samples form different clusters. 
-
+  Try different columns other that 2-5 to look at other allele calls.
   You will notice that some of the calls are numbers, and some have some letter codes. In the case of numbers, this is the call of the corresponding allele for this locus. For the codes, the list below has a short explanation for each. This usually means that no precise call was made, and it explains why.
 
 * INF – Novel inferred allele that is assigned a new identifier and added to the allele database for that given locus
@@ -78,13 +77,15 @@ You don't need to run it, as the scheme is already done and it would take a whil
 * ASM – allele 20% smaller than locus size (match CDS length < locus mode length - locus mode length * 0.2)
 
 
-5. Go to [PHYLOViZ Online](https://online.phyloviz.net/index) and click on the "Upload Data sets" link on the left. Select the "Profile Data" from the dropdown menu. Click "browse" button on the "Upload Profile Data" input to select the `results_alleles.tsv` file to upload. You also have to give a name to this dataset on the appropriate input field, and then click the "Lauch Tree" button.
+5. Follow the instructions from the MLST tutorial to remove low quality genomes, extract the core genome,
+and visualize results in PHYLOViZ. The provenance file can be obtained with:
 
-	* After the upload is finished, you should see a tree where each node corresponds to a sample. Use the "Graphic Properties" menu on the left to turn on the labels for Nodes and Links. The distances on the links correspond to the distance, in termsof number of different allele calls for each sample. You can also select the option "Relative Distance", normalizing the distance to a number between 0 and 1.
+	`wget https://raw.githubusercontent.com/bioinformaticsdotca/Genomic_Epi_2017/master/assignment_day1/tb_fake_provenance.tsv`
 
-	* This tree is a [Minimum Spanning Tree](https://en.wikipedia.org/wiki/Minimum_spanning_tree) of the graph that has all distances between the samples. How is this tree different from the phylogenetic tree obtained in the SNV analysis? What can you say about the distance between two nodes that do not have a link between them? 
+	Due to privacy issues, the real metadata was not available. 
 
+	1. Is it necessary to remove any genome from the analysis in this dataset, due to low genome-wise gene presence? Why?
 
+	2. Does the clustering obtained here agree with the one from Snphyl? 
 
-
- 
+	3. The distances between samples of the same cluster, which we assume are from the same strains, are larger than expected (compare with the V. cholerae dataset for instance). Can you think of a reason why this happens?  
