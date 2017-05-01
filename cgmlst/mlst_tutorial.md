@@ -353,6 +353,8 @@ this can be interpreted as,
 grouped together by Method B have only a 59.9% probability of being clustered
 together by Method A."*
 
+![AWC Example](http://www.comparingpartitions.info/tutorial_pngs/tutorial8_1.png)
+
 We can assess clustering methods relative to one another using the AWC.
 [Comparing Partitions](http://www.comparingpartitions.info/index.php?link=Tool)
 provides a convenient web tool for comparing microbial typing methods by AWC.
