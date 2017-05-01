@@ -31,7 +31,7 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 *<font color="#827e9c">Will Hsiao</font>* 
 
-[Lecture]()
+[Lecture](https://bioinformatics.ca/cbwgenepimod1)
 
 [Lab Practical: Connecting to the Cloud](http://bioinformaticsdotca.github.io/AWS_setup)
 
