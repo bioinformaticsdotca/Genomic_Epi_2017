@@ -47,6 +47,17 @@ cholerae O1 following a single-source introduction to Haiti.
 mBio 4(4):e00398-13. doi:10.1128/mBio.00398-13. 
 ```
 
+First, retrieve the pre-cooked chewBBACA data by running the following commands.
+Run the following commands in `bash` (the terminal on your ubuntu instance).
+
+```bash
+cd ~/workspace
+wget -O cgmlst.zip https://github.com/dorbarker/CBW/archive/master.zip
+unzip cgmlst.zip
+
+ls  # you should see a directory called "CBW-master"; if not, ask a TA for help
+```
+
 # Running chewBBACA
 
 ## Calculate the pangenome
@@ -101,16 +112,18 @@ otherwise it will return one of the following codes instead:
 ```R
 library(ggplot2)
 
+setwd('~/workspace')
+
 # First let's look at a summary of different kinds of incomplete
 # calls (missing, truncated, etc) that chewBACCA assigned
 
-stats <- read.table('~/CourseData/IDGE_data/cgmlst/haiti/results_20170427T114159/results_statistics.tsv',
+stats <- read.table('~/workspace/CBW-master/haiti/chewbbaca_results/results_statistics.tsv',
 			sep = '\t', header = TRUE, stringsAsFactors = FALSE, row.names = 1)
 
 View(stats)
 
 # now load the tab-delimited table of allele calls
-calls <- read.table('~/CourseData/IDGE_data/cgmlst/haiti/results_20170427T114159/results_alleles.tsv',
+calls <- read.table('~/workspace/CBW-master/haiti/chewbbaca_results/results_alleles.tsv',
 			sep = '\t', header = TRUE, row.names = 1,
 			stringsAsFactors = FALSE)
 
@@ -202,11 +215,11 @@ core <- calls_filtered[,  is_core]
 acc  <- calls_filtered[, !is_core]
 
 write.table(data.frame('genome' = rownames(core), core), 
-            file = '~/workspace/yourusername_cgmlst_calls.tsv',
+            file = '~/workspace/cgmlst_calls.tsv',
             sep = '\t', row.names = FALSE)
             
 write.table(data.frame('genome' = rownames(acc), acc), 
-            file = '~/workspace/yourusername_acc_calls.tsv',
+            file = '~/workspace/acc_calls.tsv',
             sep = '\t', row.names = FALSE)
 ```
 
@@ -250,7 +263,7 @@ lookups <- data.frame(
 sequence_types <- data.frame(cgST = 1:nrow(sequence_types), sequence_types)
 
 write.table(sequence_types,
-        file = '~/workspace/yourusername_haiti_cgmlst_typing_data.tsv',
+        file = '~/workspace/haiti_cgmlst_typing_data.tsv',
 	    sep = '\t', quote = FALSE, row.names = FALSE)
 
 
@@ -272,7 +285,7 @@ loading this into Phyloviz for analysis, we'll merge some strain provenance data
 we already have into our isolate data table.
 
 ```R
-provenance <- read.table('~/CourseData/IDGE_data/cgmlst/vibrio_provenance.tsv',
+provenance <- read.table('~/workspace/CBW-master/vibrio_provenance.tsv',
                          header = TRUE,
                          row.names = 1,
                          stringsAsFactors = FALSE)
@@ -282,7 +295,7 @@ provenance <- provenance[rownames(isolate_data), ]
 isolate_data <- cbind(isolate_data, provenance)
 
 write.table(isolate_data,
-            file = '~/workspace/yourusername_haiti_isolate_data.tsv',
+            file = '~/workspace/haiti_isolate_data.tsv',
             sep = '\t', quote = FALSE, row.names = FALSE)
 
 ```
@@ -435,3 +448,9 @@ gene_selection_idx <- sample(seq_along(mtcars), 200)
 
 core_subset <- core[, gene_selection_idx]
 ```
+
+Done! Of course, this is a *very* brief look at cgMLST and the thought that goes
+into its design. It can be a very powerful tool, but it will require no small
+amount of effort work to design a robust, portable cgMLST scheme.
+
+<img src="https://imgs.xkcd.com/comics/here_to_help.png" alt="Here to Help" width="750" />
