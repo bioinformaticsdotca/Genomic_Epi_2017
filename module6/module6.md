@@ -89,6 +89,7 @@ KAT works by breaking down each read into multiple 27 length k-mer and compare t
 
 
 ![alt text](images/kat.png "Kat Explaination")
+<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/tree/master/module6/images/kat.png?raw=true" alt="KAT" width="750" />  
 
 
 ```bash
