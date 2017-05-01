@@ -25,7 +25,7 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 *<font color="#827e9c">Ann Meyer</font>*
 
-[Lecture](https://bioinformatics.ca/cshl2017mod0)
+[Lecture](https://bioinformatics.ca/genepimodule02017)
 
 ## Module 1: Introduction to Public Health Microbiology and Genomic Epidemiology
 
