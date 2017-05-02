@@ -43,7 +43,7 @@ To begin, we will setup our environment in our ~/workspace so we can download al
    You will need to download the assemblies to your local machine first before uploading it to the CARD site. Navigate to http://cbwXX.dyndns.info/, where XX is your student ID. You should be able to find assembly files following the directory hierarchy ~/workspace/inter_2/assemblies .
    
    
-   When the RGI analysis has completed running on all of our assemblies, browse through your results to answer the following questions.
+   When the RGI analysis has completed running on all of our assemblies, browse through your results to answer the following questions. Pre cooked results are available [here](https://card.mcmaster.ca/rgi/results/WrOmvUuGcnZwY0El1slNnUk9eTt64f9zDIZbtxk6#) .
 
 
 
