@@ -33,7 +33,7 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 ## Module 1: Introduction to Public Health Microbiology and Genomic Epidemiology
 
-*<font color="#827e9c">Will Hsiao</font>* 
+*<font color="#827e9c">Will Hsiao</font>*
 
 [Lecture](https://bioinformatics.ca/cbwgenepimod1)
 
@@ -45,7 +45,7 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 ## Module 2: Pathogen Genomic Analysis I
 
-*<font color="#827e9c">Gary Van Domselaar</font>* 
+*<font color="#827e9c">Gary Van Domselaar</font>*
 
 [Lecture](https://bioinformatics.ca/genepimodule22017)
 
@@ -53,7 +53,7 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 ## Module 3: Pathogen Genomic Analysis II
 
-*<font color="#827e9c">Ed Taboada</font>* 
+*<font color="#827e9c">Ed Taboada</font>*
 
 [Lecture](https://bioinformatics.ca/genepimodule32017)
 
@@ -76,7 +76,7 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 ## Module 4: Antimicrobial Resistance Genes  
 
-*<font color="#827e9c">Andrew McArthur</font>* 
+*<font color="#827e9c">Andrew McArthur</font>*
 
 [Lecture](https://bioinformatics.ca/genepimodule42017)
 
@@ -84,7 +84,7 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 ## Module 5: Phylogeographic Analysis
 
-*<font color="#827e9c">Rob Beiko</font>* 
+*<font color="#827e9c">Rob Beiko</font>*
 
 [Lecture](https://bioinformatics.ca/genepimodule52017)
 
@@ -100,7 +100,7 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 ## Module 6: Emerging Pathogen Detection and Identification Using Metagenomics Samples  
 
-*<font color="#827e9c">Gary Van Domselaar</font>* 
+*<font color="#827e9c">Gary Van Domselaar</font>*
 
 [Lecture](https://bioinformatics.ca/genepimodule62017)
 
@@ -109,8 +109,8 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 ## Module 7: Data Visualization    
 
-*<font color="#827e9c">Anamaria Crisan</font>* 
+*<font color="#827e9c">Anamaria Crisan</font>*
 
 [Lecture](https://bioinformatics.ca/genepimodule72017)
 
-[Lab Practical](http://bioinformaticsdotca.github.io/)  
+[Lab Practical](http://rpubs.com/amcrisan/epiDesignPatterns)  
