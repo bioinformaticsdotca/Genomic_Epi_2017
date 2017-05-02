@@ -1,18 +1,19 @@
----
-layout: tutorial_page
-permalink: /GenEpi_2017_module5_lab
-title: GenEpi Lab 5
+layout: tutorial_page 
+permalink: /high-throughput_biology_2017_module2_lab
+
+title: Infectious Disease Genomic Epidemiology Tutorial #4 
+
 header1: Workshop Pages for Students
-header2: Infectious Disease Genomic Epidemiology 2017 Module Phylogeography Lab
-image: /site_images/CBW_wshop-epidem_map-icon.png
-home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
----
+
+header2: Infectious Disease Genomic Epidemiology Phylogeography Lab 
+
+image: /site_images/CBW-CSHL-graphic-square.png home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
 
 # Phylogeography CBW tutorial
 ## Rob Beiko - May 1, 2017
 
 **Learning objectives.**
-By the end of the tutorial, students will be able to:
+By the end of the tutorial, you will be able to:
 
 - Build a simple tree visualization using Phylocanvas
 - Create a Microreact project and use it for outbreak investigation
@@ -32,11 +33,13 @@ GenGIS has the MapMaker tool ([http://kiwi.cs.dal.ca/GenGIS/MapMaker](http://kiw
 
 Full disclosure: I changed the sampling year for one isolate from 1991 to 2004, to avoid a gap of 13 years in the timeline animation.
 
-We could use the same input format for GenGIS if we wanted to. But GenGIS offers a cleaner option which makes it easier to update information in a consistent way. For GenGIS we will split our data into a [**location file**](https://www.dropbox.com/s/z6slqwsujsxaha4/GenGIS_Cholera_locations.csv?dl=0 "Cholera isolate location file") which includes information for each site, and a [**sequence file**](https://www.dropbox.com/s/vh8l6gdszjjcj52/GenGIS_Cholera_isolates.csv?dl=0 "Cholera isolate "sequence" file") that contains information about each individual isolate. This structure keeps all location information in a single row, which makes it easier to update attributes for all sequences at a given location. IDs ("Site ID" and "Sequence ID") must be unique in each file, but you can otherwise go to town.
+We could use the same input format for GenGIS if we wanted to. But GenGIS offers a cleaner option which makes it easier to update information in a consistent way. For GenGIS we will split our data into a [**location file**](https://www.dropbox.com/s/z6slqwsujsxaha4/GenGIS_Cholera_locations.csv?dl=0 "Cholera isolate location file") which includes information for each site, and a [**sequence file**](https://www.dropbox.com/s/vh8l6gdszjjcj52/GenGIS_Cholera_isolates.csv?dl=0 "Cholera isolate file") that contains information about each individual isolate. This structure keeps all location information in a single row, which makes it easier to update attributes for all sequences at a given location. IDs ("Site ID" and "Sequence ID") must be unique in each file, but you can otherwise go to town.
 
 **Tree**: Sourced directly from the paper. A rooted tree in Newick format.
 
 ### PART 1 - [Phylocanvas](http://phylocanvas.org/ "Phylocanvas")
+
+__Disclaimer__: I am not a Web developer. What we do below will work, but Javascript is weird to me so I've probably broken a lot of conventions in preparing these scripts. The scripts below would not be possible without the help of Josh Adam at the NML.
 
 _Overview_: Phylocanvas is a Javascript library that can be used to perform interactive tree manipulations on a web page. Phylocanvas scripts can be installed locally, or you can use online resources including the “quickstart” link and various plugins. As we will see later, Phylocanvas provides the tree visualizations in Microreact as well. There are a couple of dependencies: see [http://phylocanvas.org/docs/install/](http://phylocanvas.org/docs/install/ "Installation guide") for details.
 
@@ -47,8 +50,8 @@ N.B.: I thought about embedding the HTML / Javascript in this section into a Jup
 _Tutorial outline_:
 
 1. Learn how to use the "Quickstart" package for basic visualizations
-2. Modify Quickstart to perform basic tree operations
-3. Link to a custom plugin that can ***
+2. Modify Quickstart to load a tree
+3. Build a simple user interface to do fun basic things with the tree.
 
 **1.1 Use the Phylocanvas Quickstart to create a simple tree visualization**
 
@@ -106,7 +109,7 @@ And the closing tags.
 </html>
 ```
 
-Running this in your browser should give you output similar to that in Figure 1.1a. You should be able to drag the tree around, and right clicking will give a menu with some more options.
+Running this in your browser should give you output similar to that in Figure 1.1a. You should be able to drag the tree around, and right clicking will give a menu with some more options. You may notice that the Newick tree contains "E" and "F" labels that are not being displayed; this is because these correspond to an internal node and the root node and are not displayed by default. If you want to muck around with the internals of the tree, then you will need to be able to refer to the corresponding nodes.
 
 What's going on here? The key elements are:
 
@@ -115,7 +118,7 @@ What's going on here? The key elements are:
  - creating a tree in the 'phylocanvas' division
  - initializing the tree with a Newick string
 
-**1.2 Modify Quickstart to perform basic tree operations**
+**1.2 Modify Quickstart to load your favourite tree**
 
 So that was exciting. Our next step is to start modifying the code with some basic tree manipulation bits.
 
@@ -141,9 +144,12 @@ function loadPredefinedTree() {
 	var defaultTree = '(A:0.1,B:0.2,(C:0.3,D:0.4)E:0.5)F;';
 	const tree = Phylocanvas.createTree('phylocanvas'); // see API for config options
     tree.load(defaultTree);
+	return tree;
 }
 -->
 ```
+
+This is a Javascript function that builds the tree and returns it to the HTML file so you can interact directly with it events, etc.
 
 _Step 2 and 3_
 
@@ -162,11 +168,33 @@ Two things just happened: first, we're loading "pc-functions.js" but doing anyth
 
 The modified HTML file is on Github as "pc-basic-external.html". That was a bit of work, but hopefully it will pay off as we do more things with the library.
 
+**1.3 Build a simple user interface**
 
+Let's explore some of the tree-manipulation options that are available at [The Pylocanvas site](http://phylocanvas.org/docs/features/). Figure 1.3a shows the environment that I have created.
 
-**1.3 Link to a custom plugin**
+The file "pc-interactive.html" contains the various function calls that respond to different specified control elements. I will not paste all of the examples here, but we'll look at one specifically: the range slider that controls node sizes.
 
-Thus endeth part 1.
+In the HTML file: 
+
+```
+	<p>Adjust node sizes</p>
+	<input type="range" value="0" min="0" max="50" onchange="showValue(this.value)">
+	<span id="range">0</span>
+
+```
+
+The onchange="showValue(this.value)" will call the function to update node sizes whenever the slider is dragged.
+
+The function is simple enough that I didn't bother moving it to the .js file.
+
+```
+	function showValue(newValue) {
+		document.getElementById("range").innerHTML=newValue;
+		tree.setNodeSize(newValue);
+	}
+```
+
+It should be fairly straightforward to see how the elements interact with the functions. If you want to try something "fun", try swapping one of my leaf or branch manipulations with something else on the [Phylocanvas features page](http://phylocanvas.org/docs/features/ "Phylocanvas features page").
 
 ### PART 2 - [Microreact](https://microreact.org/ "Microreact")
 
@@ -200,8 +228,8 @@ Whether you are logged in or not, the centre of the action is [https://microreac
 
 So you two choices: either download the files from Github and upload them to Microreact, or use the following links to connect with the Dropbox versions:
 
- - CSV: [`https://cdn.rawgit.com/bioinformaticsdotca/Genomic\_Epi_2017/f7b6d24a/phylogeo/Microreact_isolates_filtered.csv`](https://cdn.rawgit.com/bioinformaticsdotca/Genomic_Epi_2017/f7b6d24a/phylogeo/Microreact_isolates_filtered.csv "RawGit csv file")
- - Tree: [`https://cdn.rawgit.com/bioinformaticsdotca/Genomic_Epi_2017/f7b6d24a/phylogeo/Haiti_cholera_tree.nwk`](https://cdn.rawgit.com/bioinformaticsdotca/Genomic_Epi_2017/f7b6d24a/phylogeo/Haiti_cholera_tree.nwk "RawGit tree file")
+ - CSV: [`https://cdn.rawgit.com/bioinformaticsdotca/Genomic_Epi_2017/232d51c9/phylogeo/microreact/Microreact_isolates_filtered.csv`](https://cdn.rawgit.com/bioinformaticsdotca/Genomic_Epi_2017/f7b6d24a/phylogeo/Microreact_isolates_filtered.csv "RawGit csv file")
+ - Tree: [`https://cdn.rawgit.com/bioinformaticsdotca/Genomic_Epi_2017/232d51c9/phylogeo/microreact/Haiti_cholera_tree.nwk`](https://cdn.rawgit.com/bioinformaticsdotca/Genomic_Epi_2017/f7b6d24a/phylogeo/Haiti_cholera_tree.nwk "RawGit tree file")
 
 You can do more exotic things too, like putting your data into a Google Sheet and using a shareable link, or using their API to do everything programmatically.
 
