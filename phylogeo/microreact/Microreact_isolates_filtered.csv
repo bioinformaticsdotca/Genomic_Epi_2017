@@ -1,11 +1,11 @@
 ID,Location,Latitude,Longitude,Region,Region__colour,Country,Strain,Unpronounceable,Fulldate,Day,Month,Year
 HC-7A1,Dessalines:Artibonite:Haiti,19.28333333,-72.5,Artibonite,#DE3570,Haiti,V. cholerae O1 OGET,SRA035959,01/01/2010,1,1,2010
 2012V-1060,Florida:Saint-Marc:Artibonite:Haiti,28.1,-81.6,Artibonite,#DE3570,Haiti,V. cholerae NAG,SRX249409,11/06/2012,11,6,2012
-HC-28A1,Gonaïves:Artibonite:Haiti,19.45,-72.68333333,Artibonite,#DE3570,Haiti,V. cholerae O1 OGET,SRA035987,01/01/2010,1,1,2010
-2011EL-2317,Gonaïves:Artibonite:Haiti,19.45,-72.68333333,Artibonite,#DE3570,Haiti,V. cholerae O1 OGET,SRX249365,20/09/2011,20,9,2011
-2011EL-2318,Gonaïves:Artibonite:Haiti,19.45,-72.68333333,Artibonite,#DE3570,Haiti,V. cholerae O1 OGET,SRX249366,12/09/2011,12,9,2011
-2011EL-2320,Gonaïves:Artibonite:Haiti,19.45,-72.68333333,Artibonite,#DE3570,Haiti,V. cholerae O1 OGET,SRX249390,11/10/2011,11,10,2011
-2012EL-1410,Gonaïves:Artibonite:Haiti,19.45,-72.68333333,Artibonite,#DE3570,Haiti,V. cholerae O1 INET,SRX249408,13/03/2012,13,3,2012
+HC-28A1,GonaÃ¯ves:Artibonite:Haiti,19.45,-72.68333333,Artibonite,#DE3570,Haiti,V. cholerae O1 OGET,SRA035987,01/01/2010,1,1,2010
+2011EL-2317,GonaÃ¯ves:Artibonite:Haiti,19.45,-72.68333333,Artibonite,#DE3570,Haiti,V. cholerae O1 OGET,SRX249365,20/09/2011,20,9,2011
+2011EL-2318,GonaÃ¯ves:Artibonite:Haiti,19.45,-72.68333333,Artibonite,#DE3570,Haiti,V. cholerae O1 OGET,SRX249366,12/09/2011,12,9,2011
+2011EL-2320,GonaÃ¯ves:Artibonite:Haiti,19.45,-72.68333333,Artibonite,#DE3570,Haiti,V. cholerae O1 OGET,SRX249390,11/10/2011,11,10,2011
+2012EL-1410,GonaÃ¯ves:Artibonite:Haiti,19.45,-72.68333333,Artibonite,#DE3570,Haiti,V. cholerae O1 INET,SRX249408,13/03/2012,13,3,2012
 2010EL-1786,Saint-Marc:Artibonite:Haiti,19.11666667,-72.7,Artibonite,#DE3570,Haiti,V. cholerae O1 OGET,SRX031665,19/10/2010,19,10,2010
 2010EL-1792,Saint-Marc:Artibonite:Haiti,19.11666667,-72.7,Artibonite,#DE3570,Haiti,V. cholerae O1 OGET,SRX032204,20/10/2010,20,10,2010
 HC-06A1,Saint-Marc:Artibonite:Haiti,19.11666667,-72.7,Artibonite,#DE3570,Haiti,V. cholerae O1 OGET,SRA037376,01/01/2010,1,1,2010
@@ -74,7 +74,7 @@ vc-11,Kailali_district:Dhangadhi,28.68333333,80.6,Other Nepal,#418C41,Nepal,V. c
 vc-19,Kathmandu_district:Kathmandu_city,27.7,85.33333333,Other Nepal,#418C41,Nepal,V. cholerae O1 OGET,SRX082944,15/08/2010,15,8,2010
 vc-20,Kathmandu_district:Kathmandu_city,27.7,85.33333333,Other Nepal,#418C41,Nepal,V. cholerae O1 OGET,SRX082945,01/11/2010,1,11,2010
 3554-08,Nepal,28,84,Other Nepal,#418C41,Nepal,V. cholerae O1 OGET,SRX249691,01/01/2008,1,1,2008
-2011EL-2319,Anse-à-Galets:La_Gonave:Ouest:Haiti,18.8333,-72.867,Ouest,#39F7FA,Haiti,V. cholerae O1 OGET,SRX249382,11/10/2011,11,10,2011
+2011EL-2319,Anse-Ã -Galets:La_Gonave:Ouest:Haiti,18.8333,-72.867,Ouest,#39F7FA,Haiti,V. cholerae O1 OGET,SRX249382,11/10/2011,11,10,2011
 HC-40A1,Arcahaie:Ouest:Haiti,18.76666667,-72.51666667,Ouest,#39F7FA,Haiti,V. cholerae O1 OGET,SRA030718,01/01/2010,1,1,2010
 HC-72A2,Arcahaie:Ouest:Haiti,18.76666667,-72.51666667,Ouest,#39F7FA,Haiti,V. cholerae O1 OGET,SRA036000,01/01/2010,1,1,2010
 2010EL-2026,Bon_Samaritain_Hospital:Cazale:Ouest:Haiti,18.801,-72.384,Ouest,#39F7FA,Haiti,V. cholerae O1 OGET,SRX249015,09/11/2010,9,11,2010
