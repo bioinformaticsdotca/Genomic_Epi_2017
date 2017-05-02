@@ -17,6 +17,10 @@ Pre-readings, pre-work, and laptop setup instructions can be found [here](https:
 
 If you have questions or comments, visit the workshop [Q&A forum](https://noteapp.com/GenEpi2017).
 
+## Class Picture
+
+<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/IMG_0124.JPG?raw=true" alt="Load Dataset" width="750" />
+
 ***
 
 # Day 1 <a id="day1"></a>
