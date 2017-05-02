@@ -11,11 +11,11 @@ home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
 
 # Introduction
 
-This module gives an introduction to prediction of antimicrobial resistome and phenotype based on comparison of genomic or metagenomic DNA sequencing data to reference sequence information. While there is a large diversity of reference databases and software, the tutorial is focused on the Comprehensive Antibiotic Resistance Database (CARD) for genomic analysis and MEGARs for metagenomic analysis to illustrate the core principles of AMR prediction.
+This module gives an introduction to prediction of antimicrobial resistome and phenotype based on comparison of genomic or metagenomic DNA sequencing data to reference sequence information. While there is a large diversity of reference databases and software, the tutorial is focused on the [Comprehensive Antibiotic Resistance Database (CARD)](http://card.mcmaster.ca) for genomic analysis and MEGARs for metagenomic analysis to illustrate the core principles of AMR prediction.
 
 # From Analysis to Interpretation
 
-The relationship between AMR genotype and AMR phenotype is complicated and no tools for complete prediction of phenotype from genotype exist. Instead, analyses focus on prediction or catalog of the AMR resistome – the collection of AMR genes and mutants in the sequenced sample. While BLAST and other sequence similarity tools can be used to catalog the resistance determinants in a sample via comparison to a reference sequence database, interpretation and phenotypic prediction are often the largest challenge. To start the tutorial, we will use the Comprehensive Antibiotic Resistance Database (http://card.mcmaster.ca) to examine the diversity of resistance mechanisms, how they influence bioinformatics analysis approaches, and how CARD’s Antibiotic Resistance Ontology (ARO) can provide an organizing principle for interpretation of bioinformatics results.
+The relationship between AMR genotype and AMR phenotype is complicated and no tools for complete prediction of phenotype from genotype exist. Instead, analyses focus on prediction or catalog of the AMR resistome – the collection of AMR genes and mutants in the sequenced sample. While BLAST and other sequence similarity tools can be used to catalog the resistance determinants in a sample via comparison to a reference sequence database, interpretation and phenotypic prediction are often the largest challenge. To start the tutorial, we will use the [Comprehensive Antibiotic Resistance Database](http://card.mcmaster.ca) to examine the diversity of resistance mechanisms, how they influence bioinformatics analysis approaches, and how CARD’s Antibiotic Resistance Ontology (ARO) can provide an organizing principle for interpretation of bioinformatics results.
 
 <img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/amr/AMR.png?raw=true" alt="Load Dataset" width="750" /> 
  
@@ -30,12 +30,12 @@ The relationship between AMR genotype and AMR phenotype is complicated and no to
 In this part of the tutorial, your instructor will walk you through the following use of CARD:
 
 1.	Examine the mechanisms of resistance as described by the Antibiotic Resistance Ontology.
-2.	Examine the NDM-1 beta-lactamase protein, it’s mechanism of action, conferred antibiotic resistance, and it’s detection model. [BLASTP of NDM-1 against CARD]
-3.	Examine the AAC(6')-If aminoglycoside acetyltransferase, it’s mechanism of action, conferred antibiotic resistance, and it’s detection model. [BLASTP of AAC(6')-If against CARD]
-4.	Examine the recently reported colistin resistance MCR-1 protein, it’s mechanism of action, conferred antibiotic resistance, and it’s detection model. [BLASTP of MCR-1 against CARD]
-5.	Examine the fluoroquinolone resistant gyrB, it’s mechanism of action, conferred antibiotic resistance, and it’s detection model. [Why would BLASTP be inappropriate for this resistance determinant?]
-6.	Examine the glycopeptide resistance gene cluster VanA, it’s mechanism of action, conferred antibiotic resistance, and it’s detection model(s). [Why would BLASTP be inappropriate for this resistance determinant?]
-7.	Examine the MexAB-OprM efflux complex, it’s mechanism of action, conferred antibiotic resistance, and it’s detection model(s). [Why would BLASTP be inappropriate for this resistance determinant?]
+2.	Examine the NDM-1 beta-lactamase protein, its mechanism of action, conferred antibiotic resistance, and its detection model. [BLASTP of NDM-1 against CARD]
+3.	Examine the AAC(6')-If aminoglycoside acetyltransferase, its mechanism of action, conferred antibiotic resistance, and its detection model. [BLASTP of AAC(6')-If against CARD]
+4.	Examine the recently reported colistin resistance MCR-1 protein, its mechanism of action, conferred antibiotic resistance, and its detection model. [BLASTP of MCR-1 against CARD]
+5.	Examine the fluoroquinolone resistant gyrB, its mechanism of action, conferred antibiotic resistance, and its detection model. [Why would BLASTP be inappropriate for this resistance determinant?]
+6.	Examine the glycopeptide resistance gene cluster VanA, its mechanism of action, conferred antibiotic resistance, and its detection model(s). [Why would BLASTP be inappropriate for this resistance determinant?]
+7.	Examine the MexAB-OprM efflux complex, its mechanism of action, conferred antibiotic resistance, and its detection model(s). [Why would BLASTP be inappropriate for this resistance determinant?]
 
 # Genome Analysis
 
@@ -45,7 +45,7 @@ In this part of the tutorial, your instructor will walk you through the followin
 
 1.	Resistome prediction for the multidrug resistant Acinetobacter baumannii MDR-TJ, complete genome [NC_017847]
 2.	Resistome prediction for the plasmid isolated from Escherichia coli strain MRSN388634 plasmid [KX276657]
-3.	Explain the difference in triclosan resistance between two clinical strains of Pseudomonas aeruginosa that appear clonal based on identical MLST [Pseudomonas1.fasta, Pseudomonas2.fasta]
+3.	Explain the difference in triclosan resistance between two clinical strains of Pseudomonas aeruginosa that appear clonal based on identical MLST [[Pseudomonas1.fasta](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/raw/master/amr/Pseudomonas/Pseudomonas1.fasta), [Pseudomonas2.fasta](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/raw/master/amr/Pseudomonas/Pseudomonas2.fasta)]
 
 Preview: Some resistance mechanisms involve a number of determinants, particularly for glycopeptide resistance and efflux. To accurately predict phenotype based on DNA sequencing, higher-order meta-models are required. CARD will be introducing glycopeptide resistance cluster meta-models in Summer 2017, view the supplied HTML output to preview meta-model level analysis provided by CARD’s draft Glycopeptide Resistance Predictor (GRP): http://agmfilehosting.ca/grp
 
@@ -53,10 +53,10 @@ Preview: Some resistance mechanisms involve a number of determinants, particular
 
 CARD and other AMR reference databases include sequences and mutations from the published literature with clear experimental evidence of elevated minimum inhibitory concentration (MIC). This has implications for molecular surveillance as sequences in clinical, agricultural, or environmental strains may differ in sequence from characterized & curated reference sequences:
 
-1.	To what extent to differences between reference and isolate reflect divergence in function / phenotype? How different is too different? Often variation is a continuum between AMR proteins and homologous sequences interacting with non-antimicrobial small molecules or targets. CARD’s cut-offs are designed to avoid false positives, but detected variants may still require expression and MIC testing. What is your surveillance goal – how much variation do you want to tolerate?
+1.	To what extent do differences between reference and isolate reflect divergence in function / phenotype? How different is too different? Often variation is a continuum between AMR proteins and homologous sequences interacting with non-antimicrobial small molecules or targets. CARD’s cut-offs are designed to avoid false positives, but detected variants may still require expression and MIC testing. What is your surveillance goal – how much variation do you want to tolerate?
 2.	Algorithms for metagenomic read mapping may require high nucleotide similarity between reference and isolate, biasing analyses towards characterized AMR sequences but possibly missing functional variants. Do Burrow-Wheeler Transform or other read mapping metagenomic analyses to detect AMR determinants suffer from Type II error?
 
-The CARD team has used their Wild*CARD algorithms to assess sequence diversity for the ESKAPE pathogens based on the genome, plasmid, and WGS sequences available in GenBank. Examine the two spreadsheets to see the relative abundance of PERFECT and STRICT RGI hits in the available sequences in GenBank. Hint: Compare the total number of determinants predicted for each pathogen under each criteria, and then also compare the most prevalent determinants for each pathogen under each criteria. What are you conclusions for genomic or metagenomic surveillance of AMR? What criteria are you going to use in your work? 
+The CARD team has used their Wild\*CARD algorithms to assess sequence diversity for the ESKAPE pathogens based on the genome, plasmid, and WGS sequences available in GenBank. Examine the two spreadsheets ([1](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/raw/master/amr/WildCARD/Table%202%20v3%20-%20Perfect%20and%20Strict.xls) and [2](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/raw/master/amr/WildCARD/Table%203%20v3%20-%20Perfect.xls)) to see the relative abundance of PERFECT and STRICT RGI hits in the available sequences in GenBank. Hint: Compare the total number of determinants predicted for each pathogen under each criteria, and then also compare the most prevalent determinants for each pathogen under each criteria. What are you conclusions for genomic or metagenomic surveillance of AMR? What criteria are you going to use in your work? 
 
  
 # Analysis of Metagenomic Data
@@ -72,6 +72,10 @@ Password: Fall2015!
 Steps in the analysis:
 
 1.	Uploading data
+* Sequence reads ([forward](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/raw/master/amr/MEGARs/SRR532663_1.fastq) and [reverse](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/raw/master/amr/MEGARs/SRR532663_2.fastq))  
+* [Genomic reference](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/raw/master/amr/MEGARs/chr21.fasta)  
+* [Annotations](https://raw.githubusercontent.com/bioinformaticsdotca/Genomic_Epi_2017/master/amr/MEGARs/megares_annotations_v1.01.csv)  
+* [Database](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/raw/master/amr/MEGARs/megares_database_v1.01.fasta)  
 2.	Trimmomatic read clean-up
 3.	Host genome filtering of reads
 4.	Burrows-Wheeler Transform alignment of reads to AMR reference data
