@@ -1,0 +1,85 @@
+<!--
+HTML page to run Phylocanvas tutorial
+Authors: Josh Adam and Rob Beiko
+Version x: May 1, 2017
+Dependencies: Phylocanvas quickstart
+
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+  <style>
+    body {
+      margin: 0.625em auto;
+      max-width: 60em;
+    }
+    #phylocanvas {
+      width: 100%;
+      height: 30em;
+    }
+  </style>
+</head>
+
+<body>
+	<h1>Elementary Messing Around With Trees (EMAWT)</h1>
+	<div id="phylocanvas"></div>
+
+	
+	<script type="application/javascript" src="https://cdn.rawgit.com/phylocanvas/phylocanvas-quickstart/v2.8.1/phylocanvas-quickstart.js"></script>
+
+	<!-- START MODIFY BLOCK -->
+	<script type="application/javascript" src="pc-functions.js"></script>
+
+	Choose tree file: <input type="file" id="file-input" > </p>
+
+	<p>Press a key to select or deselect a branch.</p>
+	<input type="text" id="modleaf" onkeypress="selectme(event)">
+	
+	<p>Adjust node sizes</p>
+	<input type="range" value="0" min="0" max="50" onchange="showValue(this.value)">
+	<span id="range">0</span>
+	
+	<p>Tree type</p>
+	<form action="">
+	<input type="radio" name="treetype" value="rectangular" onclick="tree.setTreeType('rectangular'); tree.alignLabels = true;tree.draw();"> Rectangular<br>
+	<input type="radio" name="treetype" value="radial" onclick="tree.setTreeType('radial');"> Radial<br>
+	<input type="radio" name="treetype" value="circular" onclick="tree.setTreeType('circular');" dd> Circular
+	</form>
+	
+	<p>Show some metadata</p>
+	 <button type="button" onclick="showmeatdata()">Yes please!</button> 
+
+	<script type="application/javascript">
+	
+		var tree;
+		
+	  (function(Phylocanvas) {
+		tree = Phylocanvas.createTree('phylocanvas');
+		function handleTreeSelection(evt) {
+			var file = evt.target.files[0];
+			var r = new FileReader();
+			r.onload = function(e) {
+				var contents = e.target.result;
+				tree.load(contents);
+			}
+			r.readAsText(file);
+		}
+
+		var fileInput = document.querySelector("#file-input");
+		fileInput.addEventListener('change', handleTreeSelection, false);
+
+	  })(window.Phylocanvas);
+	
+	function showValue(newValue) {
+		document.getElementById("range").innerHTML=newValue;
+		tree.setNodeSize(newValue);
+	}
+	
+	</script>
+
+	<!-- END MODIFY BLOCK -->
+
+	</body>
+</html>
