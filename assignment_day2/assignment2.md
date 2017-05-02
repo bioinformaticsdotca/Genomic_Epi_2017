@@ -62,5 +62,5 @@ Time to upload metadata from our epidemiologist and tree from SNVPhyl pipeline t
 
 Navigate to https://microreact.org/upload and upload the following tree (.nhx) and metadata (.csv) url.
 
-[metadata_TB.csv](https://raw.githubusercontent.com/bioinformaticsdotca/Genomic_Epi_2017/master/assignment_day2/metadata_TB.csv)
-[tree_TB.newick](https://raw.githubusercontent.com/bioinformaticsdotca/Genomic_Epi_2017/master/assignment_day2/tree_TB.newick) 
+metadata_TB.csv : https://raw.githubusercontent.com/bioinformaticsdotca/Genomic_Epi_2017/master/assignment_day2/metadata_TB.csv
+tree_TB.newick  : https://raw.githubusercontent.com/bioinformaticsdotca/Genomic_Epi_2017/master/assignment_day2/tree_TB.newick
