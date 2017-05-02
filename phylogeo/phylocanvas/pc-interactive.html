@@ -34,21 +34,25 @@ Dependencies: Phylocanvas quickstart
 
 	Choose tree file: <input type="file" id="file-input" > </p>
 
-	<p>Press a key to select or deselect a branch.</p>
+	<!-- <p>Zoom control
+	<input type="range" id="zoom-control" max="1" min=".001" step=".001" value=".001">
+	-->
+
+	<p>Press a key to select or deselect a branch.
 	<input type="text" id="modleaf" onkeypress="selectme(event)">
 	
-	<p>Adjust node sizes</p>
+	<p>Adjust node sizes
 	<input type="range" value="0" min="0" max="50" onchange="showValue(this.value)">
 	<span id="range">0</span>
 	
-	<p>Tree type</p>
+	<p>Tree type
 	<form action="">
 	<input type="radio" name="treetype" value="rectangular" onclick="tree.setTreeType('rectangular'); tree.alignLabels = true;tree.draw();"> Rectangular<br>
 	<input type="radio" name="treetype" value="radial" onclick="tree.setTreeType('radial');"> Radial<br>
 	<input type="radio" name="treetype" value="circular" onclick="tree.setTreeType('circular');" dd> Circular
 	</form>
 	
-	<p>Show some metadata</p>
+	<p>Show some metadata
 	 <button type="button" onclick="showmeatdata()">Yes please!</button> 
 
 	<script type="application/javascript">
@@ -69,9 +73,15 @@ Dependencies: Phylocanvas quickstart
 
 		var fileInput = document.querySelector("#file-input");
 		fileInput.addEventListener('change', handleTreeSelection, false);
-
+		
 	  })(window.Phylocanvas);
-	
+
+	// Zooming. Currently doesn't work; not sure why (the correct values *are* being captured)
+	var zoomControl = document.querySelector("#zoom-control");
+	zoomControl.addEventListener('change', function(e) {
+		tree.setBranchScale(e.target.value);
+	});
+	  
 	function showValue(newValue) {
 		document.getElementById("range").innerHTML=newValue;
 		tree.setNodeSize(newValue);
