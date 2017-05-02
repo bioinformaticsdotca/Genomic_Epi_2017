@@ -8,14 +8,6 @@ image: /site_images/CBW_wshop-epidem_map-icon.png
 home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
 ---
 
-<!-- ## Table of contents
-1. [Introduction](#intro)
-2. [Software](#software)    
-2. [Environment Setup](#env)
-3. [Exercise 1](#ex1)
-4. [Exercise 2](#ex2)
-5. [Exercise 3](#ex3)
- -->
 <a name="tb"></a>
 # Tuberculosis Dataset
 
@@ -66,4 +58,9 @@ To begin, we will setup our environment in our ~/workspace so we can download al
 
 ## Phylogeographic Analysis
 
-1. 
+Time to upload metadata from our epidemiologist and tree from SNVPhyl pipeline to see if any of the INH resistances has any correlation.
+
+Navigate to https://microreact.org/upload and upload the following tree (.nhx) and metadata (.csv) url.
+
+[metadata_TB.csv](https://raw.githubusercontent.com/bioinformaticsdotca/Genomic_Epi_2017/master/assignment_day2/metadata_TB.csv)
+[tree_TB.newick](https://raw.githubusercontent.com/bioinformaticsdotca/Genomic_Epi_2017/master/assignment_day2/tree_TB.newick) 
