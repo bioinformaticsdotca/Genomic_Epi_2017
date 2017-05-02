@@ -163,9 +163,9 @@ We're going to replace the modify block in the HTML file above with the followin
   <!-- END MODIFY BLOCK -->
 ```
 
-Two things just happened: first, we're loading "pc-functions.js" but doing anything with it because we used the src tag. Second, we're creating a script block where will do various things.
+Two things just happened: first, we're loading [pc-functions.js](https://raw.githubusercontent.com/bioinformaticsdotca/Genomic_Epi_2017/master/phylogeo/phylocanvas/pc-functions.js?raw=True) but doing anything with it because we used the src tag. Second, we're creating a script block where will do various things.
 
-The modified HTML file is on Github as "pc-basic-external.html". That was a bit of work, but hopefully it will pay off as we do more things with the library.
+The modified HTML file is on Github as [pc-basic-external.html](https://raw.githubusercontent.com/bioinformaticsdotca/Genomic_Epi_2017/master/phylogeo/phylocanvas/pc-basic-external.html?raw=True). That was a bit of work, but hopefully it will pay off as we do more things with the library.
 
 **1.3 Build a simple user interface**
 
