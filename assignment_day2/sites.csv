@@ -1,0 +1,12 @@
+ID,Site ID,INH_resistance,Location,Country,Year,Latitude,Longitude
+089,089,No,Vancouver,Canada,2009,49.282436,-123.121164
+165,165,Yes,Kelowna,Canada,2010,49.879713,-119.510227
+177,177,Yes,Kelowna,Canada,2010,49.879713,-119.510227
+239,239,No,PrinceGeorge,Canada,2006,53.910608,-122.723685
+272,272,Yes,Kelowna,Canada,2009,49.879713,-119.510227
+283,283,No,PrinceGeorge,Canada,2006,53.910608,-122.723685
+291,291,No,PrinceGeorge,Canada,2007,53.910608,-122.723685
+314,314,Yes,Kelowna,Canada,2009,49.879713,-119.510227
+341,341,No,Vancouver,Canada,2011,49.282436,-123.121
+379,379,No,Vancouver,Canada,2010,49.282436,-123.121164
+reference,reference,no,Vancouver,Canada,2008,49.282436,-123.121
