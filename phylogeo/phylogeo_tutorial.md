@@ -266,9 +266,21 @@ _Tutorial outline_:
 
 **3.1. Load map, location, and "sequence" data**
 
+Files:
+
+[GenGIS_Cholera_isolates.csv](https://raw.githubusercontent.com/bioinformaticsdotca/Genomic_Epi_2017/master/phylogeo/gengis/GenGIS_Cholera_isolates.csv?raw=True)
+
+[GenGIS_Cholera_locations.csv](https://raw.githubusercontent.com/bioinformaticsdotca/Genomic_Epi_2017/master/phylogeo/gengis/GenGIS_Cholera_locations.csv?raw=true)
+
+[Haiti_cholera_tree.gtm](https://raw.githubusercontent.com/bioinformaticsdotca/Genomic_Epi_2017/master/phylogeo/gengis/Haiti_cholera_tree.gtm?raw=true)
+
+[NaturalEarth2_WorldMap.tfw](https://raw.githubusercontent.com/bioinformaticsdotca/Genomic_Epi_2017/master/phylogeo/gengis/NaturalEarth2_WorldMap.tfw?raw=True)
+
+[NaturalEarth2_WorldMap.tif](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/phylogeo/gengis/NaturalEarth2_WorldMap.tif?raw=True)
+
 GenGIS can load maps in raster and vector data formats, and can overlay vector data onto raster maps. If you do plan to use both, you must load the raster data first, then overlay the vector files. If you load vector data first, GenGIS will create a "pseudo-raster" representation. Loading vector data first also prevents you from making a cartogram, so we're going to use a raster map.
 
-One of the nicest basemaps at a global scale is the Natural Earth "hypsometric tints" map (NaturalEarth2_WorldMap.tif), which displays the world as it should look vis-a-vis forest cover, etc. This is a GeoTIFF but contains no elevation information - it simply provides a very nice georeferenced world map for subsequent analysis. The resolution is also high enough that our cartogram construction below will not look terrible. You can load the map either from the File menu, or by clicking the big "Load Raster Map" button in the ribbon. 
+One of the nicest basemaps at a global scale is the Natural Earth "hypsometric tints" map [NaturalEarth2_WorldMap.tif](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/phylogeo/gengis/NaturalEarth2_WorldMap.tif?raw=true), which displays the world as it should look vis-a-vis forest cover, etc. This is a GeoTIFF but contains no elevation information - it simply provides a very nice georeferenced world map for subsequent analysis. The resolution is also high enough that our cartogram construction below will not look terrible. You can load the map either from the File menu, or by clicking the big "Load Raster Map" button in the ribbon. 
 
 We will also load a vector map which contains country boundaries. Click "Load Vector Map" and choose "ne_50m_admin_0_sovereignty.shp". You should see the country boundaries pop up, with the vectors assigned some random colour. Let's fix this immediately by right-clicking on the "Vector Map" line in the menu on the left, and choosing "Properties" which will by default bring up the polygon colouring. Set the colour to black or whatever you like.
 
