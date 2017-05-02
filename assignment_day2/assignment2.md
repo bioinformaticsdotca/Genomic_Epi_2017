@@ -31,7 +31,7 @@ To begin, we will setup our environment in our ~/workspace so we can download al
 
 ### Task list
 
-1. Submit the following assemblies to Resistance Gene Identifier (RGI) analysis tool located at https://card.mcmaster.ca/analyze/rgi 
+1. Submit the following assemblies to Resistance Gene Identifier (RGI) analysis tool located at [card](https://card.mcmaster.ca/analyze/rgi) 
    - 291
    - 283
    - 165
@@ -61,7 +61,7 @@ To begin, we will setup our environment in our ~/workspace so we can download al
 
 We will upload metadata provided to us from our epidemiologist and our SNVPhyl phylogenomic tree to see if INH resistance has any geographic location.
 
-Navigate to https://microreact.org/upload and upload the following tree (.nhx) and metadata (.csv) url.
+Navigate to [microreact](https://microreact.org/upload) and upload the following tree (.nhx) and metadata (.csv) url.
 
 metadata_TB.csv : https://raw.githubusercontent.com/bioinformaticsdotca/Genomic_Epi_2017/master/assignment_day2/metadata_TB.csv
 tree_TB.newick  : https://raw.githubusercontent.com/bioinformaticsdotca/Genomic_Epi_2017/master/assignment_day2/tree_TB.newick
@@ -73,3 +73,4 @@ Pre cooked results are available [here](https://microreact.org/project/H1o1FD8JZ
 1. Do any of your INH resistant strains have any geographic pattern? If so, which location(s)?
 
 2. What value do you think that microreact can bring to your analysis?
+
