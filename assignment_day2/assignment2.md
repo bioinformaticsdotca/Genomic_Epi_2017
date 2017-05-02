@@ -68,7 +68,7 @@ tree_TB.newick  : https://raw.githubusercontent.com/bioinformaticsdotca/Genomic_
 
 
 
-# Questions
+### Questions
 
 1. Do any of your INH resistant strains have any geographic pattern? If so, which location(s)?
 
