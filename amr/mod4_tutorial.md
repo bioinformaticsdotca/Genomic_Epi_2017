@@ -13,14 +13,14 @@ home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
 
 This module gives an introduction to prediction of antimicrobial resistome and phenotype based on comparison of genomic or metagenomic DNA sequencing data to reference sequence information. While there is a large diversity of reference databases and software, the tutorial is focused on the Comprehensive Antibiotic Resistance Database (CARD) for genomic analysis and MEGARs for metagenomic analysis to illustrate the core principles of AMR prediction.
 
-From Analysis to Interpretation
+# From Analysis to Interpretation
 
 The relationship between AMR genotype and AMR phenotype is complicated and no tools for complete prediction of phenotype from genotype exist. Instead, analyses focus on prediction or catalog of the AMR resistome – the collection of AMR genes and mutants in the sequenced sample. While BLAST and other sequence similarity tools can be used to catalog the resistance determinants in a sample via comparison to a reference sequence database, interpretation and phenotypic prediction are often the largest challenge. To start the tutorial, we will use the Comprehensive Antibiotic Resistance Database (http://card.mcmaster.ca) to examine the diversity of resistance mechanisms, how they influence bioinformatics analysis approaches, and how CARD’s Antibiotic Resistance Ontology (ARO) can provide an organizing principle for interpretation of bioinformatics results.
 
- 
+<img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/amr/AMR.png?raw=true" alt="Load Dataset" width="750" /> 
  
 
-# CARD’s website provides the ability to: 
+## CARD’s website provides the ability to: 
 
 1.	Browse the Antibiotic Resistance Ontology (ARO) knowledgebase.
 2.	Browse the underlying AMR detection models, reference sequences, and SNP matrices.
