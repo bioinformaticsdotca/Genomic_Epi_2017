@@ -66,7 +66,7 @@ Navigate to https://microreact.org/upload and upload the following tree (.nhx) a
 metadata_TB.csv : https://raw.githubusercontent.com/bioinformaticsdotca/Genomic_Epi_2017/master/assignment_day2/metadata_TB.csv
 tree_TB.newick  : https://raw.githubusercontent.com/bioinformaticsdotca/Genomic_Epi_2017/master/assignment_day2/tree_TB.newick
 
-
+Pre cooked results are available [here](https://microreact.org/project/H1o1FD8JZ) if needed.
 
 ### Questions
 
