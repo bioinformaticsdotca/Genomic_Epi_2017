@@ -171,7 +171,7 @@ The modified HTML file is on Github as "pc-basic-external.html". That was a bit 
 
 Let's explore some of the tree-manipulation options that are available at [The Pylocanvas site](http://phylocanvas.org/docs/features/). Figure 1.3a shows the environment that I have created.
 
-The file "pc-interactive.html" contains the various function calls that respond to different specified control elements. I will not paste all of the examples here, but we'll look at one specifically: the range slider that controls node sizes.
+The file [pc-interactive.html](https://raw.githubusercontent.com/bioinformaticsdotca/Genomic_Epi_2017/master/phylogeo/phylocanvas/pc-interactive.html?raw=True) contains the various function calls that respond to different specified control elements. I will not paste all of the examples here, but we'll look at one specifically: the range slider that controls node sizes.
 
 In the HTML file: 
 
