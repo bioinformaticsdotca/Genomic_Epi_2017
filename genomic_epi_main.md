@@ -114,3 +114,7 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 [Lecture](https://bioinformatics.ca/genepimodule72017)
 
 [Lab Practical](http://rpubs.com/amcrisan/epiDesignPatterns)  
+
+## Survey
+
+Thank you for attending the Infectious Disease Genomic Epidemiology workshop!  Help us make this workshop better by filling out [our survey](https://goo.gl/forms/1SkX62TTFzLBExcC2).  
