@@ -199,7 +199,7 @@ kraken-report  --db ../EPD_IMS/kraken_db/minikraken results_initial.txt > final_
 
 Let’s look at the generated text report from Kraken-report by opening a web browser on your laptop, and navigate to http://cbwXX.dyndns.info/, where XX is your student ID. You should be able to find the file in the following directory hierarchy ~/workspace/modules6/ex1/ and open file final_report.txt
 
-Now that the Kraken report is easier to understand and interpret than the previous output we generated from Kraken, it is still not as interactive as it could be.
+Now that the Kraken report is easier to understand and interpret than the previous output we generated from Kraken, it is still not as interactive as it could be. Documentation for kraken-report available [here](https://ccb.jhu.edu/software/kraken/MANUAL.html#sample-reports)
 
 
 That is where Krona comes in; Krona generates an interactive html web page that allows hierarchical data to be explored with zooming, multi-layered pie charts and other added features.
