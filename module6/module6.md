@@ -16,6 +16,7 @@ home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
 3. [Exercise 1](#ex1)
 4. [Exercise 2](#ex2)
 5. [Exercise 3](#ex3)
+6. [Paper](#paper)
 
 
 
@@ -475,3 +476,9 @@ Navigate to [NCBI Blast](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=Blas
 3) With the viral_report, can you indicate with absolute certainty which species is our etiological culprit? Why or why not?
 
 4) Why do you think we used SPAdes instead of metaSPAdes? Try it out on the server. (hint : metaspades.py is the tool name)
+
+
+## Paper
+
+<a name="paper"></a>
+[An evaluation of the accuracy and speed of metagenome analysis tools](https://www.nature.com/articles/srep19233)
