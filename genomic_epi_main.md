@@ -118,3 +118,5 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 ## Survey
 
 Thank you for attending the Infectious Disease Genomic Epidemiology workshop!  Help us make this workshop better by filling out [our survey](https://goo.gl/forms/1SkX62TTFzLBExcC2).  
+
+***  
