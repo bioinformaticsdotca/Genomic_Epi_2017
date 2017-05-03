@@ -113,7 +113,9 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 [Lecture](https://bioinformatics.ca/genepimodule72017)
 
-[Lab Practical](http://rpubs.com/amcrisan/epiDesignPatterns)  
+[Lab Practical](http://rpubs.com/amcrisan/epiDesignPatterns) 
+
+[Lab practical RMarkdown doc](https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/CBW2017.Rmd)  
 
 ## Survey
 
