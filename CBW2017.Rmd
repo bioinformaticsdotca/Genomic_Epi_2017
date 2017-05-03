@@ -1,0 +1,616 @@
+---
+title: "CBW-2017 Module 7 "
+output: 
+  html_notebook:
+    toc: true
+---
+
+# Objectives of this tutorial
+
+In this tutorial, we'll be using a dataset from the recent 2014-2016 West African Ebola outbreak. A large motivating factor for using this dataset, aside from the recency of the outbreak, is that the data has been [made available for public use](https://github.com/nickloman/ebov), along with the [accompanying publication](https://www.nature.com/nature/journal/v530/n7589/full/nature16996.html). Feel free to go beyond this tutorial to explore the data and refer to the publication, and it's supplemental materials, to obtain a more detailed understanding of the contextual factors and major findings from these data.
+
+The objectives of this tutorial are to help you visualize this outbreak dataset in R. We'll stick to some very basic visualizations that are common (and more commonly found together) in genomic epidemiology research. More specifically this tutorial will show you how to:
+
+1. Create a phylogenetic tree with annotations (coloured node tips)
+
+2. Create a interactive map to show the geographic distribution of cases
+
+3. Create an interactive timeline plot
+
+4. Create a shiny application with interactive co-ordination between the above three data visualizations
+
+Some data munging is required to extract metadata for this tutorial, however as the emphasis is data visualization this munging is shown at the very end of the tutorial. 
+
+The [`fully released shiny application`](https://amcrisan.shinyapps.io/EpiDesignPattern/) and all of the [`visualization code`](https://github.com/amcrisan/EpiDesignPattern) are publicly available.
+
+
+# A (very brief) Introduction to Shiny
+
+[Shiny](https://shiny.rstudio.com/) is a web application framework for R - it let's you build interactive data visualizations. There are many excellent and in depth tutorials about Shiny and the universe of tools that interact with it. I'm not going to cover all of that, you can refer to the reference material on Shiny. 
+
+The main thing to understand about Shiny are the different parts of the shiny application: the user interface (ui), the server script, and the global shared variables. These are correspondingly represented as R scripts referred to as: `ui.R`, `server.R`, and `global.R`. It is these three R scripts in which the magic happens.
+
+One nice aspect of using shiny and R is that you can link interactive visualizations to epidemiological, phylogenetic, and/or statistical analysis using a common syntax, which can be harder to do with other applications.
+
+
+# Implementing design patterns
+
+In the lecture we talked about <tt>why-what-how</tt> paradigm for thinking through data visualizations. This tutorial is inspired by some common *design patterns* that are shared between applications. 
+
+
+We're going to draw from [NextStrain](http://www.nextstrain.org/ebola?c=division&r=division) and [Microreact](https://microreact.org/project/west-african-ebola-epidemic?tt=rc) for inspiration. Both of these visualizations use the Ebola dataset that we also use in the tutorial (at a minimum).
+
+These visualization share in common:
+
+* A phylogenetic tree
+
+* A map
+
+* A timeline of events
+
+We can see, however, some interesting differences. For example, the ways that you use the timeline to filter data in the three and map and the way that data is displayed on the maps and trees. 
+
+We're going to implement some of the shared aspects in these data visualizations using Shiny.  
+
+
+## Data
+
+For this tutorial we will be using data, which has been made graciously made publicly available, from the Quick (2016) paper: ["Real-time, portable genome sequencing for Ebola surveillance"](https://www.nature.com/nature/journal/v530/n7589/full/nature16996.html), which is available on [github](https://github.com/nickloman/ebov).
+
+For this tutorial, we are going to be using the phylogenetic tree that has been made available to us by Josh Quick and Nicholas Loman [(Makona_728_cds_ig.MCC.tree](https://github.com/nickloman/ebov/tree/master/phylo/beast). This tree is the Nexus format, which can be read into R directly. We'll need to wrangle the data to extract some additional metadata for plotting, but since this is not the focus of this tutorial, we've put all the data munging we've done at the end. 
+
+
+## Creating basic & static data visualizations
+
+Here we'll create the following data visualizations:
+
+1. Phylogenetic tree with annotations
+
+2. Interactive Map
+
+3. Interactive timeline plot
+
+
+All the files are details are [available online](https://github.com/amcrisan/EpiDesignPattern)!
+
+First, we load the libraries and tools that we'll need
+
+```{r message=FALSE,warning=FALSE}
+library(ape)
+library(ggtree)
+library(lubridate)
+library(tidyr)
+library(dplyr)
+library(ggmap)
+library(RColorBrewer)
+library(dygraphs)
+library(xts)
+library(leaflet)
+
+source("serverUtility.R") #custom bit of code I wrote with helper functions
+source("global.R")  # this isn't necessary for basic data viz, but it'll come in handy in the shiny app
+```
+
+Lastly, I'vesaved the processed metadata as a file, which I'll now load for the data visualizations.
+
+```{r loadMeta}
+metadata<-readRDS("./data/ebola_metadata.RDS")
+```
+
+
+```{r}
+```
+
+### Phylogenetic Tree
+
+To plot the phylogenetic tree we'll use the [`ape`](https://cran.r-project.org/web/packages/ape/index.html) library to read the tree into R and [`ggtree`](https://bioconductor.org/packages/release/bioc/html/ggtree.html) library to add annotations to tree.
+
+```{r phyloTree, echo=FALSE,message=FALSE,warning=FALSE}
+input<-data.frame(treeLayout="rect",
+                  colorBy="Country",
+                  stringsAsFactors = F)
+```
+
+```{r}
+myTree <- read.nexus("./analysis/Makona.tree") 
+tree<-ggtree(myTree)
+tree<-colorTreeTip(tree,metadata,"Country")
+tree
+```
+
+As an aside, the colorTreeTip function is one that I have created, and that resides in the <tt>serverUtility.R</tt> method. The code for that method is as follows:
+
+```{r}
+
+#FUNCTION COLOR TREETIPE
+colorTreeTip = function(tree,metadata,var) {
+  tree<-tree %<+% metadata + geom_tippoint(aes_string(color=var),size=5, alpha=0.35) + theme(legend.position="right")
+
+  if(var %in% c("Country")){
+    #the drop=FALSE is necessary to maintain a consistent colour scale across several
+    #visualizations. This will be important in the shiny application
+    tree<-tree + scale_color_manual(values=as.character(countryCol$colVals),drop=FALSE)
+  }
+  
+  tree #return the 
+}
+
+```
+
+The above code provides a custom colour scale , when we are trying to annotate the phylogenetic tree with <tt>Country</tt>. You can also colour the tree by <tt>Region</tt>, but it is very hard to choose the right colour scheme for so many different regions, so we let R just pick colours of us.
+
+```{r phyloRegion}
+tree<-ggtree(myTree)
+tree<-colorTreeTip(tree,metadata,"Region")
+tree
+```
+
+### Map
+
+We will now use the [`leaflet`](https://rstudio.github.io/leaflet/) package to plot the locations of the different cases. Naively, we could just plot every single data point, but this is actually not very helpful. For privacy concerns, all data points are plotted to the region level, so we'd have a bunch of data points sitting on top of each other, which is not a very useful map.
+
+Instead, we'll use the [`dplyr`](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) package to <tt>count</tt> the total number of cases within a country or region, and just plot that instead. We'll make the <tt>size</tt> of points on the plot roughly proportional to the total number of cases, we'll also add some pop-up text to indicate the case number!.
+
+```{r}
+# First, we need to create some new data
+# Counting number cases per country
+
+aggDat<-metadata %>%
+       filter(Country !="?") %>%
+       group_by(Country,country_lon,country_lat) %>%
+       dplyr::count()%>%
+       mutate(popup=sprintf("%s = %d cases",Country,n)) #create a popup for the map
+
+# Here's a very quick look at what this command generates for us:
+aggDat
+
+```
+
+Now we'll plot the actual map using the data we *dervied* (the aggData data.frame)
+
+```{r}
+# Now, we'll create the Map
+# This first command will creat an empty map
+m<-leaflet(aggDat)
+
+  m %>%
+        addTiles()%>% 
+        addCircleMarkers(
+          lng=~country_lon,
+          lat= ~country_lat,
+          radius=~sqrt(n)*2,
+          color = ~pal(Country),
+          stroke = FALSE, fillOpacity = 0.7,
+          label=~as.character(popup),
+          labelOptions = labelOptions(noHide = T),
+          options = leafletOptions(minZoom = 0, maxZoom = 10,scroolWheelZoom=FALSE))
+```
+
+By modifying the code very slightly, we can also plot data regionally as opposed the country level.
+
+```{r}
+aggDat<-metadata %>%
+        filter(Country !="?") %>%
+        group_by(Country,Region,region_lon,region_lat) %>%
+        dplyr::count()%>% 
+        mutate(popup=sprintf("%s (%s) = %d cases",Region,Country,n))
+      
+m<-leaflet(aggDat)
+      
+m %>%
+  addTiles()%>% 
+  addCircleMarkers(
+    lng=~region_lon,
+    lat= ~region_lat,
+    radius=~sqrt(n)*2,
+    color = ~pal(Country), #we actually colour the points by country here
+    stroke = FALSE, fillOpacity = 0.7,
+    label=~as.character(popup),
+    labelOptions = labelOptions(noHide = F)
+  )
+```
+
+`Leaflet` also allows you to automatically generate clusters that will vary when you zoom in and out on the map. We didn't implement this feature in the shiny application, but I wanted to let you know this is available. 
+
+```{r}
+m<-leaflet(metadata) 
+
+# by providing the region latitude and longtitude co-ordinates we allow clustering of regional samples
+m %>%
+  addTiles()%>%
+  addCircleMarkers(
+    lng=~region_lon,
+    lat= ~region_lat,
+    stroke = FALSE, fillOpacity = 0.5,
+    clusterOptions= markerClusterOptions(titile="regional clusters") #cluster options
+  )
+
+```
+
+The cluster colour here are automatically assigned by the `Leaflet` package, and are as follows:
+
+* orange / red for the largest clusters
+* yellow for "medium" clusters
+* green for small clusters
+
+By click on a point, the clustering algorithm reveals the geospatial locations that were aggregated into a cluster (which its a neat and handy feature). 
+
+### Timeline 
+<a id="timelineStatic"></a>
+
+Finally, we will use the [`dygraphs`](https://rstudio.github.io/dygraphs/) package to create a timeline plot that shows the aggregate number of cases over time in a country.  The `dygraphs` package requires an <tt>xts</tt> timeseries object to create the plots, so we'll use the [`xts`](https://cran.r-project.org/web/packages/xts/index.html) package in addition to `dplyr` to create the time series.
+
+First, let's set up the timeseries, which is the aggregate *monthly* number of cases *per country*. The metadata has the sample <tt>collection date</tt> (year-month-day), but to get the monthly aggregate sum we  need wrangle the data a little bit more.
+
+First, let's make the timeseries, by wrangling the data a bit:
+
+```{r}
+#count cases by date, we're also going to aggregatge by *month* so we're going to 
+    #create a new time variable
+    timeseriesData<-metadata %>%
+      mutate(yearMonth=ymd(sapply(YearMonth,function(x){paste(x,"01",sep="-")}))) %>% 
+      group_by(yearMonth)%>% 
+      dplyr::count(Country) %>%
+      complete(yearMonth,Country) %>% #make sure that all dates are represented
+      mutate(n=replace(n,is.na(n),0)) #turn NAs from above command in zeros
+
+```
+
+Next, let's take that time series and turn it into an <tt>xts</tt> object
+
+```{r}
+    
+#create an xts object
+xtsObj<-c()
+  for(i in unique(timeseriesData$Country)){
+    temp<-timeseriesData %>%
+      filter(Country == i)
+    
+    xtsObj<-cbind(xtsObj,xts(temp$n, temp$yearMonth))
+  }
+    
+#name out object, so that it plots the time series correctly
+colnames(xtsObj)<-unique(timeseriesData$Country)
+```
+
+As final step, we can now create the <tt>dygraph</tt>. This graph is interactive; you can interact with the <tt>dygraph</tt> by change the range on the slider below, or by highlighting a region of the dyrgraph with your mouse.
+
+```{r}
+#now make the the dygraph (yay!)
+dygraph(xtsObj) %>% 
+  dyOptions(stackedGraph = TRUE,colors = countryCol$colVals) %>%
+  dyRangeSelector(fillColor="#c97f91",strokeColor="#c97f91")
+```
+
+
+# Putting things together in the shiny application
+
+The above code could be used to create a shiny application, but all you'd have are three images that don't really interact with each other. In this part, I'll show you how you can create links between the visualizations to allow for *co-ordinated* interactions.
+
+The full shiny application we're working towards can be tested out here: `[https://amcrisan.shinyapps.io/EpiDesignPattern/](https://amcrisan.shinyapps.io/EpiDesignPattern/)`
+
+The main interaction driver in the application is <tt>dygraph</tt> timeline. You can highlight a region of the timeline and the phylogenetic tree & map with change accordingly. 
+
+## Working with ui.R and server.R
+
+Earlier in this document, we introduced the three main files shiny files: `ui.R`, `server.R`, and `global.R`. Here I'll show how, for our example, we would use `ui.R` and `server.R` in particular. I'm using a package called [`shinydashboard`](https://rstudio.github.io/shinydashboard/) for the visual appearance of my shiny application, which is very similar to the default `ui.R` code, but with some slight differences.
+
+Ok - so, let's just imagine a very simple shiny app : it just shows a phylogenetic tree and a user can choose to annotate the tips according to to <tt>country</tt> or <tt>region</tt>. Here's what this little bit of shiny code would look like.
+
+
+<tt>**ui.R**</tt>
+
+```{r , eval=FALSE}
+
+dashboardPage(skin = "black",
+  dashboardHeader(),
+  dashboardSidebar(
+    h2("Tree Options"),
+    selectizeInput(inputId="colorBy",
+                   label="Color By",
+                   choices=c("Date","Country","Region"),
+                   multiple=FALSE,
+                   selected="Country")
+  ),
+  dashboardBody(
+    tags$head(
+      tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
+    ),
+    plotOutput("treePlot")
+  )
+)
+
+```
+
+In the above code <tt>selectizeInput</tt> creates a dropdown list, which indicates whether the tree should be coloured by country, region, or date. It will store this information in a variable called <tt>colorBy</tt>. The phylogenetic tree will be plotted by the <tt>plotOutput</tt> function  (this works here because <tt>ggtree</tt>, which create the phylogenetic tree, is a <tt>ggplot</tt> data type), and will the coloured according to whatever variable is indicated in by the <tt>colorBy</tt> variable. 
+
+Importantly: <tt>selectiveInput</tt> takes data from the user via a drop down list and provides these data to <tt>server.R</tt> as an <tt>input variable</tt>. Conversely, <tt>plotOutput</tt> takes a resulting graph, which is produced in <tt>server.R</tt>, hence it is an <tt>ouput variable</tt>.
+
+Here's what the server code would look like to bring this plot to life:
+
+
+<tt>**server.R**</tt>
+
+```{r , eval=FALSE}
+shinyServer(function(input, output) {
+
+  #we store treePlot as an output variable
+  output$treePlot <- renderPlot({
+      
+      # We're going to load trees that have already been stored.
+      # The alternative is to re-compute tree each time, which can be slow
+      # Since we're keeping the base structure, it's good to 
+     
+      tree<-readRDS("./data/ebolaTree.RDS")  # default is rooted tree
+  
+      #we'll get the value from the colorBy variable to decided
+      #how to plot the tree tip. 
+      tree<-colorTreeTip(tree,metadata,input$colorBy)
+      #return the tree
+      tree
+  })
+})
+```
+
+So, how does this all work together? Well, the <tt>treePlot</tt> will generate when the shiny application is started and will colour its tips by using the default <tt>colorBy</tt> value (Country). When the user picks a *different* value from <tt>selectizeInput</tt>, shiny with *automatically* redraw the tree annotations. 
+
+
+## Reactive data
+
+For more complex applications that have more moving parts that need to co-ordinate, we need a more complicated data type : a <tt>[reactive data objects](https://shiny.rstudio.com/tutorial/lesson6/)</tt>
+
+For this application, I've made a decision: all the interactions will be based on the timeline graph. So, I want a dataset that changes according to the date range. This reactive dataset would live inside <tt>server.R</tt>. So, I'll add the timeseries to <tt>ui.R</tt>, and I'll we'll see how the <tt>server.R</tt> code will change.
+
+
+<tt>**ui.R**</tt>
+
+```{r , eval=FALSE}
+
+dashboardPage(skin = "black",
+  dashboardHeader(),
+  dashboardSidebar(
+    h2("Tree Options"),
+    selectizeInput(inputId="colorBy",
+                   label="Color By",
+                   choices=c("Date","Country","Region"),
+                   multiple=FALSE,
+                   selected="Country")
+  ),
+  dashboardBody(
+    tags$head(
+      tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
+    ),
+    plotOutput("treePlot"), #here's our phylogenetic tree
+    dygraphOutput("timeline") #here's our timeline, it affect the metadataReactive variable
+  )
+)
+```
+ 
+ And now the server code:
+ 
+
+<tt>**server.R**</tt>
+
+```{r , eval=FALSE}
+shinyServer(function(input, output) {
+
+  # metadata variable that changes reactive according to the
+  # timeline date range
+  metadataReactive <- reactive({
+    startDate<-input$timeline_date_window[[1]]
+    endDate<-input$timeline_date_window[[2]]
+    
+    if(is.null(startDate)){
+      metadata #when program initializes, start date will be null, so we send up the full dataset
+    }else{
+      metadata %>% filter(Date>=startDate & Date <= endDate)
+    }
+  })
+  #.
+  #.
+  #.
+  #not included: phylogenetic tree code, timeline dygraph code
+
+})
+```
+
+
+Ok - so we get some information from the dygraph about the date range (<tt>input\$timeline_date_window[[1]]</tt> and <tt>input\$timeline_date_window[[2]]</tt>). In this example, the <tt>dygraph</tt> (and output variable called <tt>timeline</tt>) can also provide *inputs* (denoted by <tt>[_date_window](https://rstudio.github.io/dygraphs/shiny.html)</tt>) to other output variables. When you interact with the timeline visualization (the dygraph), shiny will quietly collect <tt>_date_window</tt> data and pass this information to our reactive data type, <tt>metadataReactive</tt>.
+
+## Making our data visualizations reactive
+
+OK! So earlier we created the *static* versions of our data visualizations, now we'll create the *interactive versions* of our data visualizations. In the area below, I've provided the code that needs to go into the `server.R` file, but I will also indicate the complementary command that should be in `ui.R` to output the visualization.
+
+### Phylogenetic Tree
+
+For the phylogenetic tree, we only want to annotate items in the phylogenetic tree based upon the cases that fall into the date range we've selected in the timeline plot and colour the tree tips based upon the <tt>colorBy</tt> variable. To output this phylogenetic tree we use the <tt>plotOutput</tt> function in `ui.R`. We also need to add some extra steps to get our tree code to work correctly with the reactive metadata (<tt>metadataReactive</tt>). This what it would look like:
+
+```{r , eval=FALSE}
+output$treePlot <- renderPlot({
+    
+    # We're going to load trees that have already been stored.
+    # The alternative is to re-compute tree each time, which can be slow
+    # Since we're keeping the base structure, it's good to 
+    tree<-readRDS("./data/ebolaTree.RDS")  # default is rooted tree
+    
+    #metadata is available as a global variable, so we don't need to load it
+    #but we've also created this reactive variable, so we're going to 
+    #also colour by.
+    # We don't need all the data, just some
+    colTreeMeta<-metadata[,c("ID","Country","Region","Date")] 
+    colTreeMeta$Country<-factor(colTreeMeta$Country,levels=c(levels(colTreeMeta$Country),"")) #this is a hack to avoid a ggtree error
+    
+    # to access the reactive data, we need to call it as function
+    temp<-metadataReactive() #this is now a data.frame
+    
+    #this is a way I've choosen to "hide" tree tips that are not present
+    #in the date range specificed by the time series plot. 
+    colTreeMeta<-colTreeMeta %>%
+      mutate(Country = replace(Country,!(ID %in% temp$ID),""))
+    
+    #instead of metadata, I will pass colTreeMeta instead of metadata
+    tree<-colorTreeTip(tree,colTreeMeta,input$colorBy)
+  
+    
+    #return the tree
+    tree
+  })
+```
+
+As you can see, the code to make a tree interactive and listening for interactions with other trees is more complicated that static trees and requires a little extra data wrangling.  Every time <tt>metadataReactive</tt> is changed (due to interactions with the timeseries) the phylogenetic tree is automatically regenerated thanks to Shiny's internal logic that automatically detects such dependencies. 
+
+### Map
+
+We're only going to show map points, and aggregated sums, based upon the cases that occurred without a specified time period. We also want to change whether data are aggregated at the Country level, or the region level (affected by the <tt>colorBy</tt> variable). To output this map we use the <tt>leafletOutput</tt> function in `ui.R`.  Here's how the interactive map would be coded up. 
+
+```{r eval=FALSE}
+
+ output$caseMap<-renderLeaflet({
+     m<-NULL
+    
+    if(input$colorBy=="Country" | input$colorBy=="Date"){
+
+      aggDat<-metadataReactive() %>%
+        filter(Country !="?") %>%
+        group_by(Country,country_lon,country_lat) %>%
+        dplyr::count()%>% 
+        mutate(popup=sprintf("%s = %d cases",Country,n))
+      
+      m<-leaflet(aggDat) 
+      
+      m %>%
+        addTiles()%>% 
+        addCircleMarkers(
+          lng=~country_lon,
+          lat= ~country_lat,
+          radius=~sqrt(n)*2,
+          color = ~pal(Country),
+          stroke = FALSE, fillOpacity = 0.7,
+          label=~as.character(popup),
+          labelOptions = labelOptions(noHide = T)
+        )
+    }else if(input$colorBy=="Region"){
+
+      aggDat<-metadataReactive() %>%
+        filter(Country !="?") %>%
+        group_by(Country,Region,region_lon,region_lat) %>%
+        dplyr::count()%>% 
+        mutate(popup=sprintf("%s (%s) = %d cases",Region,Country,n))
+      
+      m<-leaflet(aggDat)
+      
+      m %>%
+        addTiles()%>% 
+        addCircleMarkers(
+          lng=~region_lon,
+          lat= ~region_lat,
+          radius=~sqrt(n)*2,
+          color = ~pal(Country),
+          stroke = FALSE, fillOpacity = 0.7,
+          label=~as.character(popup),
+          labelOptions = labelOptions(noHide = F)
+        )
+    }
+    
+  })
+
+```
+
+The map plotting code is identical to the static version, *except* it uses <tt>metadataReactive()</tt> instead of <tt>metadata</tt>. Every time <tt>metadataReactive</tt> changes, the map will *automatically* be updated.
+
+### Timeline
+
+The code for the timeline will actually stay exactly that same! The <tt>ui.R</tt> element that will output the <tt>dygraph</tt> timeseries is <tt>dygraphOutput</tt>. The dataset for the timeseries is constant (doesn't change), so its exactly the same code that we use for the [static version](#timelineStatic).
+
+
+## Final Shiny Application Code
+
+That's it! The full code for the `server.R` and `ui.R` is available in the github [`repository for this tutorial`](https://github.com/amcrisan/EpiDesignPattern).
+
+
+# Preparing the data for analysis
+
+In this last section, I've provided the nity gritty details of what it took to extract the metadata from the phylogenetic tree to make it usable in R.
+
+```{r metaPrep,eval=FALSE,warning=FALSE, message=FALSE}
+myTree <- read.nexus("./analysis/Makona.tree") 
+
+pTree<-ggtree(myTree)
+
+# I also want to get out the metadata 
+
+rawMeta<-get.tree(myTree)$tip.label # for these files all the INFO is the tree node label
+
+rawMeta<-sapply(rawMeta,function(x){strsplit(x,"\\|")} %>% unlist()) %>% t()
+rawMeta<-cbind(rownames(rawMeta),rawMeta)
+
+colnames(rawMeta)<-c("ID","ORG","LAB","LAB2","LAB3","Country","Region","Region2","Protocol","Date") #now its a data frame
+
+metadata<-data.frame(rawMeta)
+
+#formatting the date a little bit
+metadata$Date<-ymd(as.character(metadata$Date))
+metadata$YearMonth<-format(metadata$Date,"%Y-%m") #for quick access
+
+#now lets draw some trees!
+#very nice, the tree is coloured according to the country
+pTree %<+% metadata + geom_tippoint(aes(color=YearMonth),size=5, alpha=0.35) + theme(legend.position="right")
+
+#what about a radial tree? -yes, it works, awesome, ggtree is a great package
+pTree<-ggtree(myTree,layout="circular")
+pTree %<+% metadata+ geom_tippoint(aes(color=Country),size=5, alpha=0.35) + theme(legend.position="right")
+
+
+#so to add geographic data, I need to do a bit more processing here to store co-ordinates
+#I know the countries and Guinea, Sierra Leone, and Liberia, so I'll look those up
+dfCountry<-data.frame(Country=c("GIN","SLE","LBR"),
+                      longName=c("Guinea","Sierra Leone","Liberia"),
+                      geocode(c("Guinea","Sierra Leone","Liberia"),output="latlon"))
+colnames(dfCountry)<- c("Country","countryLongName","country_lon","country_lat")
+
+
+#let's joint this data with the rest of the metadata, I'm going to need the long names to get the accurate region
+#test2<-base::merge(x = metadata, y = dfCountry, by = "Country",all.x=T), problem is it effects ggtree
+
+#for resons unknown to me, merge is doing something bad to the data frame, so I've have to implement this hack
+mergedCountry<-sapply(metadata$Country,function(x){
+  test<-dfCountry %>% filter(Country==as.character(x)) %>% select(countryLongName,country_lon,country_lat)
+  c(as.character(test[1,1]),test[1,2],test[1,3])
+}) %>% t() %>% data.frame
+
+colnames(mergedCountry)<-c("countryLongName","country_lon","country_lat")
+
+
+metadata<-cbind(metadata,mergedCountry)
+
+regionString<-metadata %>% 
+  filter(Region !='?') %>% 
+  mutate(searchString = paste(Region,countryLongName,sep=", ")) %>% 
+  select(Region,searchString) %>%
+  unique()
+
+dfRegion<-data.frame(Region = regionString$Region,
+                     geocode(unique(regionString$searchString)))
+colnames(dfRegion)<-c("Region","region_lon","region_lat")
+
+#for resons unknown to me, merge is doing something bad to the data frame, so I've have to implement this hack
+mergedRegion<-sapply(metadata$Region,function(x){
+  test<-dfRegion %>% filter(Region==as.character(x)) %>% select(region_lon,region_lat)
+  c(as.character(test[1,1]),test[1,2])
+}) %>% t() %>% data.frame()
+colnames(mergedRegion)<-c("region_lon","region_lat")
+
+metadata<-cbind(metadata,mergedRegion)
+
+#now I have to fix all of the number issues
+metadata$country_lon<-as.numeric(as.character(metadata$country_lon))
+metadata$country_lat<-as.numeric(as.character(metadata$country_lat))
+
+metadata$region_lon<-as.numeric(as.character(metadata$region_lon))
+metadata$region_lat<-as.numeric(as.character(metadata$region_lat))
+
+saveRDS(file="data/ebola_metadata.RDS",metadata) #it all works now, that was annoying
+
+```
+
+
