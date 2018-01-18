@@ -15,8 +15,6 @@ The course schedule can be found [here](https://bioinformaticsdotca.github.io/ge
 
 Pre-readings, pre-work, and laptop setup instructions can be found [here](https://bioinformaticsdotca.github.io/genomic_epidemiology_2017_prework).  
 
-If you have questions or comments, visit the workshop [Q&A forum](https://noteapp.com/GenEpi2017).
-
 ## Class Picture
 
 <img src="https://github.com/bioinformaticsdotca/Genomic_Epi_2017/blob/master/IMG_0124.JPG?raw=true" alt="Load Dataset" width="750" />
@@ -29,17 +27,17 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 *<font color="#827e9c">Ann Meyer</font>*
 
-[Lecture](https://bioinformatics.ca/genepimodule02017)
-
 ## Module 1: Introduction to Public Health Microbiology and Genomic Epidemiology
 
 *<font color="#827e9c">Will Hsiao</font>*
 
-[Lecture](https://bioinformatics.ca/cbwgenepimod1)
+[Lecture](https://drive.google.com/a/bioinformatics.ca/file/d/1XfEm12YlckYJzqQp2ZToakl4ou-Qs66d/view?usp=sharing)  
+
+[Recording](https://youtu.be/IUfNuKVS6KA)  
 
 [Lab Practical: Connecting to the Cloud](http://bioinformaticsdotca.github.io/AWS_setup)
 
-[Lecture](https://bioinformatics.ca/cbwgenepimod1b)  
+[Lecture]https://drive.google.com/a/bioinformatics.ca/file/d/1s5BmPE1OgQwnJFkFiD4yU04o7XyqdHLI/view?usp=sharing)  
 
 * We have set up 25 instances on the Amazon cloud - one for each student. In order to log in to your instance, you will need a security certificate. If you plan on using Linux or Mac OS X, please download [this certificate](http://cbwmeta.dyndns.info/private/CBWNY.pem). Otherwise if you plan on using Windows (with Putty and Winscp), please download [this certificate](http://cbwmeta.dyndns.info/private/CBWNY.ppk).
 
@@ -47,7 +45,9 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 *<font color="#827e9c">Gary Van Domselaar</font>*
 
-[Lecture](https://bioinformatics.ca/genepimodule22017)
+[Lecture](https://drive.google.com/a/bioinformatics.ca/file/d/1GWssmgegxWMy2X4jdiHfEJJvionoC27B/view?usp=sharing)  
+
+[Recording](https://youtu.be/1p5HYSGt-PI)
 
 [Lab Practical](http://bioinformaticsdotca.github.io/genomic_epidemiology_2017_PGA_1)
 
@@ -55,7 +55,9 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 *<font color="#827e9c">Ed Taboada</font>*
 
-[Lecture](https://bioinformatics.ca/genepimodule32017)
+[Lecture](https://drive.google.com/a/bioinformatics.ca/file/d/1NUozh3ZtHD2ejE4Dpp8FvFF2n1vNiJQn/view?usp=sharing)  
+
+[Recording](https://youtu.be/QCZk5_W8dII)  
 
 [Lab Practical](http://bioinformaticsdotca.github.io/GenEpi_2017_module3_lab)  
 
@@ -63,7 +65,7 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 *<font color="#827e9c">Fiona Brinkman</font>*  
 
-[Keynote](https://bioinformatics.ca/cbwgenepikeynote)  
+[Keynote](https://drive.google.com/a/bioinformatics.ca/file/d/18XUq2ELCeMCbV-pOkVHdcqOD127z6fqq/view?usp=sharing)  
 
 **Integrated Assignment**  
 
@@ -78,7 +80,9 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 *<font color="#827e9c">Andrew McArthur</font>*
 
-[Lecture](https://bioinformatics.ca/genepimodule42017)
+[Lecture](https://drive.google.com/a/bioinformatics.ca/file/d/10S8x8Clfn-lKmLqCTH3RKx0TFTbnxsyx/view?usp=sharing)  
+
+[Recording](https://youtu.be/7TA5o5TFKR4)  
 
 [Lab Practical](http://bioinformaticsdotca.github.io/GenEpi_2017_module4_lab)
 
@@ -86,7 +90,9 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 *<font color="#827e9c">Rob Beiko</font>*
 
-[Lecture](https://bioinformatics.ca/genepimodule52017)
+[Lecture](https://drive.google.com/a/bioinformatics.ca/file/d/1ZODmMn_Bm5GakKXV-SOV-b1D33H4BRoW/view?usp=sharing)  
+
+[Recording](https://youtu.be/CekT1_hsyZE)  
 
 [Lab Practical](http://bioinformaticsdotca.github.io/GenEpi_2017_module5_lab)
 
@@ -102,7 +108,7 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 *<font color="#827e9c">Gary Van Domselaar</font>*
 
-[Lecture](https://bioinformatics.ca/genepimodule62017)
+[Lecture](https://drive.google.com/a/bioinformatics.ca/file/d/1NghUIsZBUXqE4gYuShbYlv8dizncdA5_/view?usp=sharing)
 
 [Lab Practical](http://bioinformaticsdotca.github.io/genomic_epidemiology_2017_EPD_IMS)  
 
@@ -111,7 +117,9 @@ If you have questions or comments, visit the workshop [Q&A forum](https://noteap
 
 *<font color="#827e9c">Anamaria Crisan</font>*
 
-[Lecture](https://bioinformatics.ca/genepimodule72017)
+[Lecture](https://drive.google.com/a/bioinformatics.ca/file/d/18iYUDoFnn0z0G-QtT-rpcsAmR5AA030j/view?usp=sharing)
+
+[Recording](https://youtu.be/9gNC5ZU5xQ8)  
 
 [Lab Practical](http://rpubs.com/amcrisan/epiDesignPatterns) 
 
