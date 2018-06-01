@@ -5,7 +5,8 @@ title: Genomic Epidemiology
 header1: Workshop Pages for Students
 header2: Infectious Disease Genomic Epidemiology
 image: /site_images/CBW_wshop-epidem_map-icon.png
-keywords: understand next generation sequencing, phylogeographic analysis, use different visualization tools for genomic epidemiology analysis
+keywords: understand next generation sequencing, phylogeographic analysis, use visualization tools for genomic epidemiology analysis
+description: Course provides an introduction to genomic epidemiology analysis followed by hands-on practical tutorials demonstrating the use of selected analysis tools.
 instructors: William Hsiao, Gary Van Domselaar, Eduardo Taboada, Andrew McArthur, Robert Beiko, Jennifer Gardy, Fiona Brinkman
 length: 3 days
 ---
