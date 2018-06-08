@@ -6,6 +6,9 @@ header1: Workshop Pages for Students
 header2: Infectious Disease Genomic Epidemiology Phylogeography Lab 
 image: /site_images/CBW_wshop-epidem_map-icon.png
 home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
+description: Phylogeography CBW Tutorial
+author: Rob Beiko
+modified: May 1st, 2017
 ---
 
 # Phylogeography CBW tutorial
