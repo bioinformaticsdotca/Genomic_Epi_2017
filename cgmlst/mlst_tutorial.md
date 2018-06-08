@@ -6,6 +6,10 @@ header1: Workshop Pages for Students
 header2: Genome-scale Multilocus Sequence Typing Lab
 image: /site_images/CBW_wshop-epidem_map-icon.png
 home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
+description: Genome-scale Multilocus Sequence Typing CBW Tutorial
+author: Dillon Barker
+modified: May 1st, 2017
+
 ---
 
 # Genome-scale Multilocus Sequence Typing CBW Tutorial
