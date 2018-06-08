@@ -6,6 +6,9 @@ header1: Pathogen Genomic Analysis I
 header2: SNVPhyl
 image: /site_images/CBW_wshop-epidem_map-icon.png
 home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
+description: Pathogen Genomic Analysis 1
+author: Gary Van Domselaar
+modified: May 1st, 2017
 ---
 
 
