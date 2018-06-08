@@ -6,6 +6,9 @@ header1: Workshop Pages for Students
 header2: Infectious Disease Genomic Epidemiology 2017 Module 4 Lab
 image: /site_images/CBW_wshop-epidem_map-icon.png
 home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
+description: GenEpi Lab 4
+author: Andrew McArthur
+modified: May 2nd, 2017
 ---
 
 
