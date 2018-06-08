@@ -6,6 +6,9 @@ header1: Workshop Pages for Students
 header2: Infectious Disease Genomic Epidemiology 2017 Assignment Day 2
 image: /site_images/CBW_wshop-epidem_map-icon.png
 home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
+description: Antimicrobial Resistance Genes
+author:
+modified: May 2nd, 2017
 ---
 
 <a name="tb"></a>
