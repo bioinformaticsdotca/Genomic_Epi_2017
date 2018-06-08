@@ -6,6 +6,9 @@ header1: Emerging Pathogen Detection and Identification using Metagenomic Sample
 header2: Infectious Disease Genomic Epidemiology
 image: /site_images/CBW_wshop-epidem_map-icon.png
 home: https://bioinformaticsdotca.github.io/genomic_epidemiology_2017
+description: Emerging Pathogen Detection and Identification using Metagenomic Samples
+author: Gary Van Domselaar
+modified: May 3rd, 2017
 ---
 
 
